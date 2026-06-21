@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/enriq/Downloads/ENRIQUE-LEE-HUAMANI-URIARTE/05_pipeline/mlruns/165439636835143989/97f2d11b4615485cae8a40e27d8ac064/artifacts
+end_time: 1782048061537
+entry_point_name: ''
+experiment_id: '165439636835143989'
+lifecycle_stage: active
+run_id: 97f2d11b4615485cae8a40e27d8ac064
+run_name: logistic_regression-seed-87
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1782048061410
+status: 3
+tags: []
+user_id: enriq

@@ -1,0 +1,10 @@
+# Gap Analysis Table
+
+| Gap Type | Gap Identified | Evidence Or Rationale |
+|---|---|---|
+| **Knowledge gap** | There is growing work on crime prediction, hot-spot analysis, and smart-city decision support, but Comas-specific evidence on integrated crime-risk prediction remains limited. | The project proposal identifies a lack of local predictive tools that combine SIDPOL-style complaint records, census variables, and geospatial segmentation for Comas. |
+| **Methodological gap** | Many local security analyses remain descriptive or retrospective. A validated temporal Machine Learning workflow is needed to estimate next-period risk rather than only map past incidents. | The proposed contribution is a supervised, temporally validated pipeline with metrics such as AUC-ROC, PR-AUC, precision, recall, and F1-score. |
+| **Geospatial gap** | District-level averages hide intra-district variation. Risk may vary by territorial cell, mobility corridor, commercial density, and socioeconomic vulnerability. | The project requires territorial aggregation and geospatial features to support risk-map-ready outputs. |
+| **Data-integration gap** | Police complaint records, census indicators, municipal infrastructure proxies, and cartography are often stored separately and are not always processed as a single analytical dataset. | The protocol centers on engineering a reproducible multifeature territorial-time dataset. |
+| **Ethical and governance gap** | Predictive crime systems can reinforce reporting bias or over-policing if they are treated as automatic enforcement tools. | The project must include aggregation, privacy protection, bias checks, explainability, and human oversight before any operational use. |
+| **Contribution of the present study** | The project can demonstrate a TRL 4 laboratory prototype for urban crime-risk prediction in Comas, with reproducible experiments and responsible-use documentation. | The current repository provides the synthetic technical baseline; later stages should replace it with authorized real data and formal validation. |

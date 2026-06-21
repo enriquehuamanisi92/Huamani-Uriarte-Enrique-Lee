@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/enriq/Downloads/ENRIQUE-LEE-HUAMANI-URIARTE/05_pipeline/mlruns/165439636835143989/25daf1995d41497ea79ff322f7422a45/artifacts
+end_time: 1782048046487
+entry_point_name: ''
+experiment_id: '165439636835143989'
+lifecycle_stage: active
+run_id: 25daf1995d41497ea79ff322f7422a45
+run_name: random_forest-seed-21
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1782048046408
+status: 3
+tags: []
+user_id: enriq

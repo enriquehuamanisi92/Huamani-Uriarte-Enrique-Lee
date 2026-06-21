@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/enriq/Downloads/ENRIQUE-LEE-HUAMANI-URIARTE/05_pipeline/mlruns/165439636835143989/9dd6858ab200434c8b222b9a0697d2a2/artifacts
+end_time: 1782048040082
+entry_point_name: ''
+experiment_id: '165439636835143989'
+lifecycle_stage: active
+run_id: 9dd6858ab200434c8b222b9a0697d2a2
+run_name: svm_rbf-seed-13
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1782048039984
+status: 3
+tags: []
+user_id: enriq

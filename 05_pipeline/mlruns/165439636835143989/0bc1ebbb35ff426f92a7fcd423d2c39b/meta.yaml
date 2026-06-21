@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/enriq/Downloads/ENRIQUE-LEE-HUAMANI-URIARTE/05_pipeline/mlruns/165439636835143989/0bc1ebbb35ff426f92a7fcd423d2c39b/artifacts
+end_time: 1782048062075
+entry_point_name: ''
+experiment_id: '165439636835143989'
+lifecycle_stage: active
+run_id: 0bc1ebbb35ff426f92a7fcd423d2c39b
+run_name: mlp_neural_net-seed-87
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1782048061981
+status: 3
+tags: []
+user_id: enriq

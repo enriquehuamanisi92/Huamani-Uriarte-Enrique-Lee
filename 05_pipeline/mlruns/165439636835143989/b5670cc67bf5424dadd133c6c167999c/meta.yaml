@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/enriq/Downloads/ENRIQUE-LEE-HUAMANI-URIARTE/05_pipeline/mlruns/165439636835143989/b5670cc67bf5424dadd133c6c167999c/artifacts
+end_time: 1782048054044
+entry_point_name: ''
+experiment_id: '165439636835143989'
+lifecycle_stage: active
+run_id: b5670cc67bf5424dadd133c6c167999c
+run_name: gradient_boosting-seed-42
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1782048053929
+status: 3
+tags: []
+user_id: enriq
