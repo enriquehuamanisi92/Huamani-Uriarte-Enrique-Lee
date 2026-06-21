@@ -6,11 +6,29 @@ Urban crime risk in Lima Metropolitana is shaped by population density, land-use
 
 The current research topic is the development and validation of a predictive model of urban crime risk for Comas. The proposal focuses on patrimonial and economic crime risk, using historical police complaint records, census variables, and geospatial segmentation to estimate risk levels across territorial units and time periods.
 
-## 2. Preliminary Research Question
+## 2. Public Incidence Context And PROCIENCIA-CONCYTEC Orientation
+
+This work is also framed as an applied research proposal being prepared for a PROCIENCIA-CONCYTEC project application. In that sense, the repository is not only a course artifact; it is an early methodological and technical structure for a potential publicly funded research project oriented toward technological validation, reproducibility, and responsible use of urban-security data.
+
+![Illustrative urban incident context for the Comas predictive-risk project](urban_incident_context.png)
+
+The figure above is a synthetic visual aid generated from the repository's demonstration dataset. It represents how current public-safety incidence signals could be aggregated into territorial risk surfaces for research and preventive decision support. It does not contain real SIDPOL records, real police reports, victim information, addresses, or operational municipal data.
+
+The public monitoring context that motivates the project includes the MININTER district-level crime incidence portal, the MININTER georeferenced crime map, INEI DATACRIM, and INEI citizen-security statistics. These sources support the relevance of studying territorial incident patterns, complaint dynamics, and security-risk concentration in Peru; however, the current repository keeps the visual layer synthetic until authorized real data are obtained and ethically processed.
+
+The intended contribution for the PROCIENCIA-CONCYTEC application is a TRL 4 laboratory prototype: a reproducible pipeline that integrates complaint-style records, socioeconomic indicators, and geospatial segmentation to produce validated urban crime-risk maps for Comas. The prototype is designed as decision support for prevention, not as an automatic policing or individual-level surveillance system.
+
+- MININTER district-level crime incidence portal: <https://observatorio.mininter.gob.pe/content/incidencia-delictiva-distrital-0>
+- MININTER georeferenced crime map: <https://observatorio.mininter.gob.pe/MapaDelDelitoGeorreferenciado>
+- INEI DATACRIM map panel: <https://datacrim.inei.gob.pe/panel/mapa>
+- INEI citizen-security statistics: <https://m.inei.gob.pe/biblioteca-virtual/boletines/estadisticas-de-seguridad-ciudadana/1/>
+- PROCIENCIA institutional portal: <https://prociencia.gob.pe/>
+
+## 3. Preliminary Research Question
 
 To what extent can an integrated Machine Learning and geospatial analysis model predict urban crime-risk levels in Comas, Lima Metropolitana, using historical police complaints and socioeconomic-territorial variables?
 
-## 3. Chosen Paradigm And Justification
+## 4. Chosen Paradigm And Justification
 
 The most appropriate starting point is a **quantitative applied technological paradigm**. The project is not only trying to understand crime patterns descriptively; it is trying to build, test, and validate a computational artifact that can support preventive decision-making.
 
@@ -20,7 +38,7 @@ I am not choosing a purely interpretivist paradigm as the main frame because int
 
 I am also not choosing a purely theoretical computer-science paradigm. The project is not just about inventing a new algorithm; it is about adapting and validating supervised learning methods for a concrete urban-management problem in Comas.
 
-## 4. Implications Of The Paradigm Choice
+## 5. Implications Of The Paradigm Choice
 
 This paradigm points toward an experimental and reproducible workflow:
 
@@ -33,6 +51,6 @@ This paradigm points toward an experimental and reproducible workflow:
 
 The expected contribution is both scientific and practical. Scientifically, the project can show which territorial, socioeconomic, and temporal variables are most informative for risk prediction. Practically, it can demonstrate the feasibility of moving from retrospective description toward preventive, evidence-based urban-security management.
 
-## 5. Main Tension
+## 6. Main Tension
 
 The main tension is ethical and operational. Crime prediction can be useful for prevention, but it can also reinforce historical reporting bias, over-policing, or unequal surveillance if it is used without safeguards. For that reason, the model should be validated as a decision-support prototype, not as an automatic enforcement tool. Outputs must be aggregated, privacy-preserving, explainable, and accompanied by bias and responsible-use checks before any institutional adoption.
