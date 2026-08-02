@@ -27,6 +27,7 @@ This research proposes developing and validating a machine-learning and geospati
 | `05_pipeline/` | Synthetic data, code, notebook, and technical results. |
 | `06_repro_audit/` | Reproducibility audit and verification checklist. |
 | `07_model_card/` | Model card and dataset datasheet. |
+| `08_prociencia/` | PROCIENCIA submission context, evidence status, and expected Peruvian impact. |
 | `09_ethics/` | Ethics protocol and use limitations. |
 | `10_data_mgmt/` | Research data management plan. |
 | `11_bias_audit/` | Bias and subgroup-performance audit plan. |
@@ -37,6 +38,10 @@ This research proposes developing and validating a machine-learning and geospati
 - **Completed:** methodological formulation, protocol v1.0, governance documents, and reproducible synthetic pipeline.
 - **Preliminary:** exploratory literature review. Previous PRISMA counts must not be treated as final results until searches and exports are completed.
 - **Pending:** authorization and access to real data, geocoding protocol, ethics review, auditable systematic search, and external validation.
+
+## PROCIENCIA application context
+
+This project was submitted to the PROCIENCIA **Applied Research Projects 2026-02** call in the Advanced track through Asociación Civil Universidad de Ciencias y Humanidades (UCH). Submission evidence identifies Enrique Lee Huamani Uriarte and the proposal title used in this repository. Submission does not imply selection or funding; the repository will be updated only when an official decision is available. If funded, the proposed research will progress from a synthetic proof of concept toward controlled validation with authorized Peruvian data and a laboratory prototype designed for the institutional and urban context of Comas. See `08_prociencia/prociencia_application.md`.
 
 ## Reproducing the proof of concept
 
