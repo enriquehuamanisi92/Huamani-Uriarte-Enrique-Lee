@@ -1,0 +1,24 @@
+variable,type,role,definition,unit_or_range,source,real_phase_note
+zone_id,string,identifier,Synthetic stable territorial identifier,CZ-001...,synthetic,Replace with non-semantic aggregate ID
+sector,categorical,stratifier,Synthetic sector label,6 categories,synthetic,Use official harmonized territorial grouping
+latitude,float,predictor,Synthetic approximate centroid latitude,WGS84,synthetic,Publish only safe aggregate centroids if authorized
+longitude,float,predictor,Synthetic approximate centroid longitude,WGS84,synthetic,Publish only safe aggregate centroids if authorized
+year,integer,time,Calendar year,2018-2025,derived,Validate event and reporting dates
+month,integer,time,Calendar month,1-12,derived,Known at prediction time
+month_index,integer,time,Sequential month index,nonnegative,derived,Define from frozen origin
+population_density_km2,integer,predictor,Synthetic population density,persons/km2,synthetic,Derive from official population and area
+socioeconomic_vulnerability,float,predictor,Synthetic vulnerability index,0-1,synthetic,Predefine components and temporal validity
+youth_share,float,predictor,Synthetic youth population share,0-1,synthetic,Assess necessity and proxy risk
+commercial_density,float,predictor,Synthetic commercial activity proxy,0-1,synthetic,Document official source and denominator
+transit_access_index,float,predictor,Synthetic transit accessibility,0-1,synthetic,Document construction
+road_connectivity_index,float,predictor,Synthetic road connectivity,0-1,synthetic,Document network method
+lighting_coverage,float,predictor,Synthetic lighting coverage,0-1,synthetic,Validate municipal coverage and missingness
+cctv_density,float,predictor,Synthetic CCTV density,0-1,synthetic,Restricted if operationally sensitive
+patrol_coverage,float,predictor,Synthetic patrol coverage,0-1,synthetic,Potential feedback variable; sensitivity analysis
+distance_to_transit_corridor_km,float,predictor,Synthetic distance to corridor,kilometres,synthetic,Calculate in projected CRS
+weekend_night_activity,float,predictor,Synthetic activity proxy,0-1,synthetic,Require lawful aggregate source
+seasonal_pressure,float,predictor,Deterministic synthetic seasonal term,continuous,derived,Prefer calendar terms in real phase
+recent_incidents,integer,predictor,Incidents at lag 1,count,derived,Calculate inside territory without future leakage
+rolling_3m_incidents,float,predictor,Mean incidents over prior 3 months,count,derived,Exclude current and future periods
+incident_trend,integer,predictor,Difference between lag 1 and lag 4,count,derived,Predefine missing-history rule
+target_high_risk_next_month,integer,outcome,Synthetic next-month count above global 68th percentile,0/1,synthetic,Not an institutional risk definition

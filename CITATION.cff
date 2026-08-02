@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Si utiliza este repositorio, cite al autor y la version consultada."
+title: "Prediccion del riesgo delictivo urbano en Comas"
+type: software
+authors:
+  - family-names: "Huamani Uriarte"
+    given-names: "Enrique Lee"
+repository-code: "https://github.com/enriquehuamanisi92/Huamani-Uriarte-Enrique-Lee"
+version: "0.2.0"
+date-released: "2026-08-01"
+license: "CC-BY-NC-4.0"

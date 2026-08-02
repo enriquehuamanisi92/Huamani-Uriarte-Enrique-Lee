@@ -21,3 +21,12 @@ Thumbs.db
 
 # DVC local cache
 .dvc/cache/
+
+# MLflow local tracking store (keep curated summaries in docs/)
+mlruns/
+05_pipeline/mlruns/
+
+# Local model and report artifacts
+*.joblib
+*.pkl
+05_pipeline/outputs/

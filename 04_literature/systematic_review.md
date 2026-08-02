@@ -1,104 +1,78 @@
-# Mini Literature Review: Urban Crime Risk Prediction And Geospatial Analytics
+# Revision exploratoria estructurada de literatura
 
-## 4.1. Review Question
+## Estado y alcance
 
-What does the applied research literature suggest about using Machine Learning and geospatial analysis to predict urban crime risk and support preventive management at local territorial scales?
+Este documento es un protocolo y una sintesis exploratoria para el curso. **Todavia no es una revision sistematica concluida.** Los conteos de una version anterior (106 identificados y 12 incluidos) no se presentan como resultados verificables porque el repositorio no contiene las exportaciones, fechas, decisiones por registro ni textos evaluados que permitan auditarlos. El diagrama existente se conserva solo como borrador historico y debera regenerarse despues de ejecutar la busqueda.
 
-## 4.2. Search Strategy
+## Pregunta de revision
 
-This is a course-level mini review, not the final systematic review. It should be treated as a structured working synthesis that can later be updated with a formal exported search log from Scopus, Web of Science, IEEE Xplore, ACM Digital Library, Google Scholar, and regional public-policy sources.
+¿Que metodos, fuentes de datos, estrategias de validacion y salvaguardas se han utilizado para predecir riesgo delictivo agregado en territorios urbanos mediante aprendizaje automatico y analisis geoespacial, y que evidencia existe en contextos latinoamericanos comparables con Comas?
 
-**Preliminary source distribution**
+## Protocolo de busqueda planificado
 
-| Source Or Database | Records Identified | Main Use In The Review |
-|---|---:|---|
-| Scopus | 42 | Peer-reviewed work on urban analytics, predictive policing, Machine Learning, and smart-city systems. |
-| IEEE Xplore | 21 | Computational approaches, predictive models, geospatial processing, and AI system design. |
-| Web of Science | 18 | Public-administration, criminology, and urban-policy literature. |
-| ACM Digital Library | 9 | Deep learning, mobility data, and urban computing approaches to crime prediction. |
-| Google Scholar and regional/open sources | 16 | RAND/NIJ reports, Latin American context, policy documents, and responsible-AI references. |
-| **Total identified** | **106** |  |
+| Elemento | Decision preespecificada |
+|---|---|
+| Bases | Scopus, Web of Science, IEEE Xplore, ACM Digital Library y SciELO; busqueda complementaria en Google Scholar y organismos oficiales. |
+| Periodo | 2008 hasta la fecha de ejecucion final. |
+| Idiomas | Ingles, espanol y portugues. |
+| Fecha de busqueda | **Pendiente de ejecutar y registrar.** |
+| Gestion | Exportar RIS/BibTeX/CSV; conservar consulta, fecha, filtros y total por base; deduplicar por DOI, titulo y autores. |
+| Reporte | Flujo inspirado en PRISMA 2020, sin afirmar cumplimiento hasta completar su lista de verificacion. |
 
-**Indicative search string**
+### Consulta conceptual
 
 ```text
-("crime prediction" OR "crime risk" OR "predictive policing" OR "urban safety")
-AND ("machine learning" OR "random forest" OR "gradient boosting" OR "support vector machine")
-AND ("geospatial" OR "spatiotemporal" OR "hot spot" OR "GIS")
-AND ("urban" OR "city" OR "district" OR "municipal")
+("crime prediction" OR "crime risk" OR "predictive policing" OR
+ "crime forecasting" OR "urban safety")
+AND ("machine learning" OR "statistical learning" OR "deep learning")
+AND (geospatial OR spatial OR spatiotemporal OR GIS OR hotspot)
+AND (urban OR city OR district OR municipal)
 ```
 
-## 4.3. Screening Criteria
+La consulta se adaptara a la sintaxis de cada base y se guardara literalmente en `search_log.csv`.
 
-**Inclusion criteria**
+## Elegibilidad
 
-- Studies on urban crime prediction, risk mapping, hot-spot analysis, or public-safety decision support.
-- Methods using Machine Learning, spatiotemporal modeling, GIS, or multifeature urban data.
-- Work that reports predictive validation metrics or discusses operational use.
-- Studies with relevance to district-level or intra-urban territorial analysis.
+### Inclusion
 
-**Exclusion criteria**
+- Estudios de riesgo, incidencia o concentracion delictiva a escala territorial urbana.
+- Modelos estadisticos, de ML o espacio-temporales con validacion fuera de muestra.
+- Descripcion suficiente de datos, unidad espacial, horizonte y metricas.
+- Estudios empiricos, revisiones metodologicas y documentos de gobernanza directamente pertinentes.
 
-- Purely legal, criminological, or sociological discussions with no analytical model.
-- Individual-level offender prediction or surveillance systems outside the scope of aggregated territorial risk.
-- Studies without clear data sources, validation strategy, or methodological transparency.
-- Systems that do not address ethical, fairness, or governance concerns.
+### Exclusion
 
-## 4.4. PRISMA-Style Flow
+- Prediccion individual de autor, reincidencia, culpabilidad o perfiles personales.
+- Trabajos sin evaluacion empirica cuando se analice desempeno predictivo.
+- Estudios sin acceso a texto o informacion minima tras intentar recuperarla.
+- Duplicados, resumenes sin articulo y trabajos fuera del ambito urbano-territorial.
 
-| Phase | n |
-|---|---:|
-| Records identified from Scopus, IEEE Xplore, Web of Science, ACM Digital Library, and other sources | 106 |
-| Duplicates removed | 14 |
-| Records screened by title and abstract | 92 |
-| Records excluded after screening | 58 |
-| Full texts or detailed abstracts assessed | 34 |
-| Full texts excluded due to limited methodological fit, lack of validation, or weak relevance to district-level prediction | 22 |
-| Studies retained for the working synthesis | 12 |
+Dos revisores serian deseables para titulo/resumen y texto completo. Si el curso solo permite un revisor, se declarara esa limitacion y una muestra de decisiones sera verificada por una segunda persona sin atribuir una revision inexistente.
 
-The diagram version of this process is available in `prisma_diagram.png`.
+## Extraccion y calidad
 
-## 4.5. Key Retained Investigations
+Por estudio se registraran: referencia/DOI, pais, periodo, fuente, unidad espacial y temporal, delito, resultado, predictores, modelo, baseline, particion, prevencion de fuga, metricas, calibracion, validacion externa, explicabilidad, equidad y limitaciones. La calidad se evaluara con criterios predefinidos de representatividad, temporalidad, transparencia, comparador, generalizacion y riesgo de sesgo; no se fabricara una puntuacion retrospectiva.
 
-| Study Or Source | Database / Source Type | Main Contribution To This Project |
-|---|---|
-| Chainey, Tompson, and Uhlig (2008), hotspot mapping for spatial crime prediction | Scopus / criminology and GIS literature | Supports the use of historical concentration and spatial units as a baseline for risk mapping. |
-| Mohler et al. (2011), self-exciting point process modeling of crime | Scopus / statistical modeling | Shows that crime events can have space-time dependence and near-repeat dynamics. |
-| Perry et al. (2013), RAND predictive policing guide | Policy and technical report | Frames predictive policing as decision support and warns that predictions do not replace institutional strategy. |
-| Bogomolov et al. (2014), crime prediction with demographic and mobile data | ACM Digital Library / urban computing | Demonstrates the value of integrating demographic and behavioral urban data for geographic crime prediction. |
-| Lum and Isaac (2016), predictive-policing feedback loops | Responsible AI literature | Warns that historical police data can reproduce feedback loops if used without bias controls. |
-| Huang et al. (2018), DeepCrime | ACM Digital Library / deep learning | Provides a reference for neural, spatiotemporal crime-prediction architectures. |
-| Meijer and Wessels (2019), review of predictive-policing benefits and drawbacks | Web of Science / public administration | Highlights the gap between promised benefits and available empirical evidence. |
-| Richardson, Schultz, and Crawford (2019), dirty data and predictive policing | Responsible AI / law and technology | Supports the need for privacy, bias, and data-quality safeguards. |
-| Recent Machine Learning crime-prediction surveys | Scopus / IEEE Xplore / Google Scholar | Support model comparison across logistic regression, Random Forest, gradient boosting, SVM, and neural networks. |
-| Regional open-data and municipal-security sources | Regional/open sources | Provide context for data fragmentation, geocoding, institutional capacity, and Latin American applicability. |
+## Sintesis exploratoria verificable
 
-## 4.6. Working Evidence Clusters
+La literatura fundacional sugiere que la concentracion del delito y la dependencia espacio-temporal pueden sustentar pronosticos territoriales, pero la utilidad depende del comparador y del diseno de validacion. Los registros policiales no son una fotografia neutral: reflejan ocurrencia, denuncia y practicas institucionales. Por ello, la precision no elimina riesgos de realimentacion y distribucion desigual de vigilancia.
 
-| Cluster | Main Contribution To This Project |
-|---|---|
-| Hot-spot policing and crime concentration | Supports the idea that crime is spatially concentrated and that territorial units matter for prevention. |
-| Spatiotemporal crime prediction | Shows that time, place, and recent incident history can improve risk estimation compared with static descriptions. |
-| Machine Learning for structured urban data | Supports the comparison of Random Forest, Gradient Boosting, Support Vector Machines, and neural-network approaches. |
-| GIS and smart-city analytics | Provides the basis for translating model outputs into maps, dashboards, and decision-support products. |
-| Responsible AI and predictive policing critique | Warns that predictive systems can reproduce historical bias, underreporting patterns, or unequal institutional attention. |
-| Latin American and municipal data contexts | Highlights data-fragmentation, geocoding, interoperability, and institutional-capacity challenges in real implementation. |
+Para Comas se derivan cinco compromisos:
 
-## 4.7. Main Synthesis
+1. Comparar el ML con baselines de persistencia y hotspots historicos.
+2. Separar entrenamiento, ajuste y prueba respetando el tiempo.
+3. Medir transferencia espacial a territorios no vistos.
+4. Reportar calibracion, incertidumbre y errores territoriales, no solo AUC.
+5. Tratar el producto como apoyo agregado y no como automatizacion policial.
 
-The literature points to a consistent pattern: crime-risk prediction is strongest when it integrates recent incident history, temporal cycles, urban morphology, socioeconomic conditions, and geospatial context. Purely descriptive hot-spot maps can identify past concentration, but predictive models can provide a stronger basis for anticipatory analysis if they are validated on held-out future periods.
+## Referencias semilla (verificadas por DOI o editor)
 
-Machine Learning methods are useful because they can capture nonlinear relationships among territorial and temporal predictors. However, strong metrics alone are not enough. A public-safety model must be explainable, audited for bias, and positioned as decision support rather than automatic enforcement.
+- Chainey, S., Tompson, L., & Uhlig, S. (2008). The utility of hotspot mapping for predicting spatial patterns of crime. *Security Journal, 21*, 4-28. https://doi.org/10.1057/palgrave.sj.8350066
+- Mohler, G. O., Short, M. B., Brantingham, P. J., Schoenberg, F. P., & Tita, G. E. (2011). Self-exciting point process modeling of crime. *Journal of the American Statistical Association, 106*(493), 100-108. https://doi.org/10.1198/jasa.2011.ap09546
+- Perry, W. L., McInnis, B., Price, C. C., Smith, S. C., & Hollywood, J. S. (2013). *Predictive Policing: The Role of Crime Forecasting in Law Enforcement Operations*. RAND. https://doi.org/10.7249/RR233
+- Lum, K., & Isaac, W. (2016). To predict and serve? *Significance, 13*(5), 14-19. https://doi.org/10.1111/j.1740-9713.2016.00960.x
+- Meijer, A., & Wessels, M. (2019). Predictive policing: Review of benefits and drawbacks. *International Journal of Public Administration, 42*(12), 1031-1039. https://doi.org/10.1080/01900692.2019.1575664
+- Richardson, R., Schultz, J. M., & Crawford, K. (2019). Dirty data, bad predictions. *New York University Law Review Online, 94*, 15-55.
+- Page, M. J., et al. (2021). The PRISMA 2020 statement. *BMJ, 372*, n71. https://doi.org/10.1136/bmj.n71
 
-The Comas project fits this literature because it proposes a bounded, district-level, TRL 4 laboratory prototype. Its value is not only the algorithm, but the full pipeline: data integration, territorial-time aggregation, model comparison, geospatial output, and responsible-use documentation.
-
-## 4.8. What This Means For The Present Study
-
-The project should prioritize four methodological commitments:
-
-- Use temporal validation so the model is tested on future-like periods.
-- Compare several algorithms against a simple baseline.
-- Report both discrimination metrics and operationally meaningful metrics such as recall and precision.
-- Document privacy, bias, and governance safeguards before any real-world use.
-
-The current repository implements only a synthetic demonstration of this workflow. The next research stage must replace the synthetic dataset with authorized, anonymized, and aggregated data from official sources.
+Estas referencias son un conjunto inicial, no equivalen a los estudios incluidos de una revision terminada.
