@@ -1,129 +1,129 @@
-# Protocolo de investigacion v1.0
+# Research Protocol v1.0
 
-**Titulo:** Desarrollo y validacion de un modelo de prediccion del riesgo delictivo urbano basado en aprendizaje automatico y analisis geoespacial para la gestion preventiva en Comas, Lima Metropolitana
+**Title:** Development and Validation of an Urban Crime Risk Prediction Model Based on Machine Learning and Geospatial Analysis for Preventive Management in Comas, Metropolitan Lima
 
-**Version:** 1.0 — agosto de 2026
+**Version:** 1.0 — August 2026
 
-**Autor:** Enrique Lee Huamani Uriarte
+**Author:** Enrique Lee Huamani Uriarte
 
-## 1. Planteamiento del problema
+## 1. Problem statement
 
-Las denuncias policiales, los indicadores censales y la informacion del entorno urbano describen dimensiones complementarias del riesgo delictivo, pero suelen encontrarse separadas, con distinta granularidad espacial y periodicidad. El uso exclusivo de reportes retrospectivos limita la evaluacion anticipada de concentraciones territoriales. El problema cientifico-tecnologico es la falta de una validacion local, reproducible y responsable de un modelo que estime el riesgo del periodo siguiente sin confundir denuncia registrada con totalidad de delitos ni convertir correlaciones en explicaciones causales.
+Police complaints, census indicators, and urban-environment data describe complementary dimensions of crime risk, but they are usually fragmented and have different spatial and temporal resolutions. Reliance on retrospective reporting limits anticipatory assessment of territorial concentrations. The scientific and technological problem is the absence of a locally validated, reproducible, and responsible model that estimates next-period risk without equating recorded complaints with total crime or interpreting predictive associations as causal explanations.
 
-El estudio se limita a delitos patrimoniales agregados territorialmente. No busca predecir individuos, reincidencia, culpabilidad ni comportamiento personal. La unidad exacta se seleccionara luego de evaluar cobertura, error de geocodificacion y riesgo de reidentificacion.
+The study is limited to territorially aggregated property crime. It will not predict individuals, recidivism, guilt, or personal behavior. The exact spatial unit will be selected after assessing coverage, geocoding error, and re-identification risk.
 
-## 2. Justificacion
+## 2. Rationale
 
-- **Cientifica:** evaluara si la integracion de informacion espacio-temporal aporta generalizacion frente a baselines simples.
-- **Tecnologica:** producira un pipeline versionado y un prototipo validado en laboratorio, sujeto a la evaluacion TRL aplicable.
-- **Practica:** generara estimaciones agregadas que podrian apoyar priorizacion preventiva bajo supervision humana.
-- **Social y etica:** incorporara limites de uso, privacidad, auditoria de disparidades y comunicacion de incertidumbre desde el diseno.
+- **Scientific:** assess whether spatiotemporal integration improves generalization over simple baselines.
+- **Technological:** produce a versioned pipeline and laboratory-validated prototype, subject to the applicable TRL assessment.
+- **Practical:** generate aggregated estimates that may support preventive planning under human oversight.
+- **Social and ethical:** incorporate use limitations, privacy, disparity auditing, and uncertainty communication by design.
 
-## 3. Preguntas, objetivos e hipotesis
+## 3. Questions, objectives, and hypotheses
 
-### 3.1 Pregunta general
+### 3.1 General research question
 
-¿En que medida un modelo que integra antecedentes delictivos, variables socioeconomicas y caracteristicas geoespaciales predice el riesgo mensual de delitos patrimoniales por unidad territorial de Comas, frente a baselines historicos, bajo validacion temporal y espacial?
+To what extent can a model integrating crime history, socioeconomic variables, and geospatial characteristics predict monthly property-crime risk by territorial unit in Comas, compared with historical baselines, under temporal and spatial validation?
 
-### 3.2 Objetivo general
+### 3.2 General objective
 
-Desarrollar y validar el modelo integrado, evaluar discriminacion, calibracion, utilidad y estabilidad territorial, y documentar las salvaguardas necesarias para su uso como apoyo preventivo.
+Develop and validate the integrated model, evaluate discrimination, calibration, utility, and territorial stability, and document safeguards required for preventive decision support.
 
-### 3.3 Objetivos especificos
+### 3.3 Specific objectives
 
-1. Integrar y documentar una base territorio-mes con controles de calidad y trazabilidad.
-2. Describir distribucion, tendencia, estacionalidad y autocorrelacion espacial.
-3. Comparar modelos supervisados con baselines de prevalencia y persistencia historica.
-4. Evaluar generalizacion mediante ventanas temporales rodantes y particiones espaciales.
-5. Analizar calibracion, errores, interpretabilidad y disparidades territoriales.
-6. Producir mapas agregados, ficha del modelo y protocolo de uso responsable.
+1. Integrate and document a territory-month dataset with quality controls and provenance.
+2. Describe distribution, trend, seasonality, and spatial autocorrelation.
+3. Compare supervised models with prevalence and historical-persistence baselines.
+4. Evaluate generalization using rolling temporal windows and spatial splits.
+5. Analyze calibration, errors, interpretability, and territorial disparities.
+6. Produce aggregated maps, a model card, and a responsible-use protocol.
 
-### 3.4 Hipotesis
+### 3.4 Hypotheses
 
-**H1:** el modelo integrado superara al baseline historico en PR-AUC y Brier score en periodos futuros.
+**H1:** The integrated model will outperform the historical baseline on PR-AUC and Brier score in future periods.
 
-**H2:** las variables de historia reciente aportaran informacion predictiva incremental sobre las variables territoriales estaticas.
+**H2:** Recent crime-history variables will add predictive information beyond static territorial variables.
 
-**H3:** el rendimiento y la calibracion variaran entre sectores; esas diferencias deberan cuantificarse antes de considerar cualquier uso institucional.
+**H3:** Performance and calibration will vary across sectors; these differences must be quantified before any institutional use is considered.
 
-H1 y H2 son hipotesis predictivas, no causales. H3 funciona como hipotesis de heterogeneidad y criterio de seguridad.
+H1 and H2 are predictive, not causal, hypotheses. H3 is a heterogeneity hypothesis and safety criterion.
 
-## 4. Diseno
+## 4. Design
 
-Estudio cuantitativo aplicado de desarrollo y validacion predictiva con observaciones repetidas por territorio y mes. El periodo propuesto es 2018-2025, condicionado por autorizacion y calidad. La fase actual es una prueba de concepto sintetica. La fase con datos reales sera retrospectiva y no intervencional.
+This is a quantitative applied study for predictive-model development and validation using repeated territory-month observations. The proposed period is 2018-2025, conditional on authorization and data quality. The current phase is a synthetic proof of concept. The real-data phase will be retrospective and non-interventional.
 
-## 5. Poblacion, unidad y criterios
+## 5. Population, unit, and eligibility
 
-- **Poblacion objetivo:** unidades territoriales de Comas observadas mensualmente.
-- **Unidad de analisis:** territorio-mes.
-- **Inclusion:** denuncias patrimoniales dentro de Comas, fechas validas, clasificacion armonizable y geocodificacion compatible con el nivel agregado.
-- **Exclusion:** duplicados confirmados, registros fuera del periodo/ambito, coordenadas imposibles y observaciones que no puedan agregarse con seguridad.
-- **Muestra:** censo de registros elegibles; se informara numero de registros, territorios, meses y eventos luego de la autorizacion. No se inventa un tamano a priori.
+- **Target population:** territorial units in Comas observed monthly.
+- **Unit of analysis:** territory-month.
+- **Inclusion:** property-crime complaints within Comas with valid dates, harmonizable classification, and geocoding compatible with safe aggregation.
+- **Exclusion:** confirmed duplicates, records outside the scope or period, impossible coordinates, and observations that cannot be aggregated safely.
+- **Sample:** census of eligible records. Counts of records, territories, months, and events will be reported after authorization; no sample size is fabricated in advance.
 
-Se realizara un analisis de suficiencia basado en numero de eventos, prevalencia, complejidad del modelo y precision esperada de las metricas. Si los datos son insuficientes, se reducira la complejidad o se ampliara la unidad de agregacion.
+Data sufficiency will be assessed using event counts, prevalence, model complexity, and desired precision of performance estimates. If data are insufficient, model complexity will be reduced or the aggregation unit enlarged.
 
-## 6. Fuentes y gobierno del dato
+## 6. Data sources and governance
 
-1. Registros SIDPOL autorizados y seudonimizados antes del acceso analitico.
-2. Censo Nacional 2017 del INEI, documentando el desfase temporal.
-3. Cartografia oficial y, solo si existe licencia y calidad suficiente, variables municipales de infraestructura.
+1. Authorized SIDPOL records, pseudonymized before analytical access.
+2. INEI 2017 National Census data, explicitly documenting temporal mismatch.
+3. Official cartography and, only when licensing and quality permit, municipal infrastructure variables.
 
-No se almacenaran datos personales en GitHub. La vinculacion se realizara en un entorno controlado; el repositorio publico contendra codigo, metadatos, esquemas y datos sinteticos.
+Personal data will never be stored on GitHub. Linkage will occur in a controlled environment; the public repository will contain code, metadata, schemas, and synthetic data only.
 
-## 7. Resultado y predictores
+## 7. Outcome and predictors
 
-El resultado primario sera el conteo o tasa de denuncias patrimoniales en t+1. Como analisis secundario, se definiran niveles de riesgo mediante umbrales preespecificados y justificados. Todos los predictores deberan estar disponibles al cierre de t. Los rezagos se calcularan dentro de cada unidad territorial y se auditaran para evitar fuga de informacion.
+The primary outcome will be the next-month count or population-adjusted rate of property-crime complaints. Secondary analyses may define risk levels using prespecified, justified thresholds. Every predictor must be available by the end of month t. Lags will be calculated within territorial units and audited for information leakage.
 
-## 8. Plan de analisis
+## 8. Analysis plan
 
-1. Congelar diccionario, reglas de elegibilidad y plan analitico.
-2. Evaluar duplicados, faltantes, consistencia, cobertura y error de geocodificacion.
-3. Describir tasas, tendencias, estacionalidad y autocorrelacion espacial (Moran global y local cuando corresponda).
-4. Entrenar baseline de prevalencia, baseline de persistencia, regresion regularizada y modelos de arboles. Modelos mas complejos solo si el volumen y la ganancia incremental los justifican.
-5. Aplicar validacion temporal de ventana expansiva; reservar el periodo final como prueba intacta.
-6. Aplicar validacion espacial agrupando territorios para medir transferencia a zonas no vistas.
-7. Ajustar hiperparametros y umbral exclusivamente en entrenamiento/validacion.
-8. Reportar PR-AUC como metrica principal de discriminacion cuando exista desbalance; ademas ROC-AUC, precision, recall, F1, Brier, curva de calibracion e intervalos bootstrap.
-9. Comparar modelos con identicas particiones y reportar incertidumbre, no solo el mejor valor puntual.
-10. Examinar importancia por permutacion o SHAP, estabilidad temporal y errores por sector.
+1. Freeze the data dictionary, eligibility rules, and analysis plan.
+2. Assess duplicates, missingness, consistency, coverage, and geocoding error.
+3. Describe rates, trends, seasonality, and spatial autocorrelation using global and local Moran statistics where appropriate.
+4. Train prevalence and persistence baselines, regularized logistic regression, and tree-based models. More complex models will be used only when sample size and incremental value justify them.
+5. Use expanding-window temporal validation and preserve the final period as an untouched test set.
+6. Use grouped spatial validation to assess transfer to unseen territories.
+7. Tune hyperparameters and decision thresholds using training/validation data only.
+8. Report PR-AUC as the main discrimination metric under class imbalance, together with ROC-AUC, precision, recall, F1, Brier score, calibration curves, and bootstrap confidence intervals.
+9. Compare models on identical splits and report uncertainty rather than only the best point estimate.
+10. Examine permutation importance or SHAP values, temporal stability, and sector-specific errors.
 
-## 9. Control de sesgos
+## 9. Bias control
 
-Las denuncias reflejan tanto victimizacion como propension y acceso a denunciar. No se interpretaran como medicion exhaustiva del delito. Se documentaran cambios administrativos, faltantes, cobertura y posibles ciclos de realimentacion. No se usaran variables personales sensibles ni proxies sin justificacion. Las comparaciones territoriales se presentaran con tamanos de muestra e intervalos, evitando etiquetar comunidades como intrinsecamente peligrosas.
+Complaint data reflect victimization, willingness and ability to report, and institutional practices. They will not be treated as a complete measure of crime. Administrative changes, missingness, coverage, and possible feedback loops will be documented. Sensitive personal variables and unjustified proxies will not be used. Territorial comparisons will include sample sizes and uncertainty and will not label communities as inherently dangerous.
 
-## 10. Etica y proteccion
+## 10. Ethics and data protection
 
-Antes de datos reales se requeriran autorizacion institucional y evaluacion etica aplicable. El tratamiento observara la Ley N.° 29733 y normativa vigente que corresponda. Se aplicaran minimizacion, acceso por rol, cifrado, registro de accesos, agregacion, calendario de eliminacion y respuesta a incidentes. Las salidas tendran revision de revelacion y no mostraran puntos individuales.
+Institutional authorization and applicable ethics review will be required before real data are used. Processing will comply with Peruvian Law No. 29733 and regulations in force at execution. Safeguards include minimization, role-based access, encryption, access logging, aggregation, a deletion schedule, and an incident-response procedure. Public outputs will undergo disclosure review and will not display individual points.
 
-## 11. Reproducibilidad
+## 11. Reproducibility
 
-Codigo, parametros, semillas, versiones, hashes y decisiones analiticas se versionaran. DVC gestionara artefactos no sensibles; MLflow registrara experimentos sin incluir datos reales ni rutas reveladoras. Una reproduccion desde clon limpio debera generar las tablas principales antes del cierre del estudio.
+Code, parameters, seeds, versions, hashes, and analytical decisions will be versioned. DVC will manage non-sensitive artifacts; MLflow will record experiments without real data or revealing paths. An independent clean-clone reproduction must generate the principal tables before study closure.
 
-## 12. Limitaciones
+## 12. Limitations
 
-Subregistro, sesgo de denuncia, cambios de clasificacion, desfase censal, dependencia espacial, deriva temporal, calidad de geocodificacion y limitada transportabilidad fuera de Comas. El diseno predictivo no identifica causas ni demuestra que una intervencion reduzca delitos.
+Expected limitations include underreporting, reporting bias, classification changes, census time mismatch, spatial dependence, temporal drift, geocoding quality, and limited transportability beyond Comas. A predictive design cannot identify causes or demonstrate that an intervention reduces crime.
 
-## 13. Productos y criterios de avance TRL
+## 13. Outputs and TRL progression criteria
 
-- Base analitica documentada y controlada.
-- Pipeline reproducible y pruebas automatizadas.
-- Informe de validacion temporal-espacial.
-- Ficha del modelo, datasheet, auditoria de sesgo y protocolo etico.
-- Prototipo de mapa agregado en laboratorio.
+- Controlled, documented analytical dataset.
+- Reproducible pipeline and automated tests.
+- Temporal-spatial validation report.
+- Model card, datasheet, bias audit, and ethics protocol.
+- Laboratory prototype of an aggregated risk map.
 
-La denominacion TRL 4 se mantendra como meta y solo se afirmara como alcanzada cuando exista evidencia verificable de validacion de componentes en el entorno definido por la directiva vigente de CONCYTEC.
+TRL 4 remains a target and will be claimed only when there is verifiable evidence that components were validated in the environment defined by the applicable CONCYTEC directive.
 
-## 14. Cronograma resumido (24 meses)
+## 14. Summary timeline (24 months)
 
-| Fase | Meses | Producto |
+| Phase | Months | Output |
 |---|---:|---|
-| Autorizaciones, revision y protocolo | 1-4 | Protocolo congelado y permisos. |
-| Integracion y calidad de datos | 5-8 | Base y diccionario auditados. |
-| Analisis y desarrollo | 9-14 | Baselines y modelos candidatos. |
-| Validacion y auditorias | 15-18 | Informe temporal, espacial y de sesgos. |
-| Prototipo y evaluacion | 19-21 | Mapa agregado y ficha del modelo. |
-| Redaccion y transferencia | 22-24 | Tesis, articulo y paquete reproducible. |
+| Authorization, review, and protocol | 1-4 | Frozen protocol and permissions. |
+| Data integration and quality | 5-8 | Audited dataset and dictionary. |
+| Analysis and development | 9-14 | Baselines and candidate models. |
+| Validation and audits | 15-18 | Temporal, spatial, and bias reports. |
+| Prototype and evaluation | 19-21 | Aggregated map and model card. |
+| Writing and transfer | 22-24 | Thesis, article, and reproducible package. |
 
-## 15. Enmiendas
+## 15. Amendments
 
-Toda modificacion posterior al congelamiento indicara fecha, motivo, impacto y si fue realizada antes o despues de observar el conjunto de prueba. Los analisis no preespecificados se rotularan como exploratorios.
+Every change after protocol freezing will record its date, rationale, impact, and whether it occurred before or after test-set inspection. Non-prespecified analyses will be labeled exploratory.

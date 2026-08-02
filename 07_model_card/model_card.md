@@ -1,36 +1,32 @@
-# Ficha del modelo — prototipo sintetico
+# Model Card — Synthetic Prototype
 
-## Identificacion
+## Identification
 
-- **Nombre:** Comas Urban Crime Risk Prototype.
+- **Name:** Comas Urban Crime Risk Prototype.
 - **Version:** 0.1-synthetic.
-- **Responsable:** Enrique Lee Huamani Uriarte.
-- **Estado:** prueba de concepto; no desplegable.
+- **Owner:** Enrique Lee Huamani Uriarte.
+- **Status:** proof of concept; not deployable.
 
-## Proposito previsto
+## Intended purpose
 
-Demostrar un pipeline reproducible para estimar riesgo agregado del mes siguiente por unidad territorial. En una fase autorizada podria apoyar analisis preventivo y priorizacion de diagnosticos con supervision humana.
+Demonstrate a reproducible pipeline for estimating aggregated next-month risk by territorial unit. In an authorized future phase, it may support preventive analysis under human oversight.
 
-## Usos prohibidos
+## Prohibited uses
 
-- Identificar, puntuar, vigilar o detener personas.
-- Inferir culpabilidad, reincidencia o pertenencia a grupos.
-- Asignar automaticamente patrullaje, sanciones o recursos.
-- Publicar direcciones, coordenadas puntuales o mapas que faciliten reidentificacion.
-- Utilizar las metricas sinteticas como evidencia de eficacia real.
+- Identifying, scoring, monitoring, or detaining individuals.
+- Inferring guilt, recidivism, or group membership.
+- Automatically allocating patrols, sanctions, or resources.
+- Publishing addresses, point coordinates, or re-identifiable maps.
+- Presenting synthetic metrics as evidence of real-world effectiveness.
 
-## Datos y resultado actual
+## Current data and outcome
 
-Datos totalmente sinteticos de 64 zonas mensuales entre 2018-2025. La etiqueta binaria representa que el conteo sintetico del mes siguiente supera un percentil global. Esa definicion es didactica y no es una definicion institucional de riesgo.
+Fully synthetic monthly data for 64 zones from 2018 through 2025. The binary label indicates whether a synthetic next-month count exceeds a global percentile. This teaching definition is not an institutional definition of risk.
 
-## Evaluacion actual
+## Current evaluation
 
-Se reportan ROC-AUC, PR-AUC, exactitud, precision, recall y F1 en un holdout temporal desde 2024. Random Forest alcanza alrededor de 0.84 ROC-AUC en los experimentos guardados. El resultado es esperado porque datos y etiqueta provienen de reglas simuladas. Falta calibracion, baseline de persistencia, intervalos, validacion rodante y espacial.
+Saved experiments report ROC-AUC, PR-AUC, accuracy, precision, recall, and F1 on a temporal holdout beginning in 2024. Random Forest reaches approximately 0.84 ROC-AUC. This is expected because the data and outcome follow programmed relationships. Calibration, persistence baselines, intervals, rolling validation, and spatial validation remain pending.
 
-## Riesgos
+## Risks and release requirements
 
-Subregistro, sesgo de denuncia, realimentacion policial, deriva, geocodificacion desigual, estigmatizacion territorial, proxies sensibles y falsa confianza en puntajes. Un mapa puede causar dano aun sin identificar personas.
-
-## Requisitos antes de cambiar el estado
-
-Permisos y etica; datos agregados; prueba independiente; comparadores; calibracion; auditoria de disparidades; documentacion de incertidumbre; aprobacion humana; monitoreo y procedimiento de retiro. Hasta entonces el estado es **NO APTO PARA USO OPERATIVO**.
+Risks include underreporting, reporting bias, police feedback, drift, uneven geocoding, territorial stigma, sensitive proxies, and false confidence. Before any status change, the project requires permissions, ethics review, aggregated data, independent testing, baselines, calibration, disparity auditing, uncertainty documentation, human approval, monitoring, and a withdrawal procedure. Current status: **NOT SUITABLE FOR OPERATIONAL USE**.

@@ -1,44 +1,44 @@
-# Prediccion del riesgo delictivo urbano en Comas
+# Urban Crime Risk Prediction in Comas
 
-**Autor:** Enrique Lee Huamani Uriarte
+**Author:** Enrique Lee Huamani Uriarte
 
-**Curso:** Metodos de investigacion e integridad cientifica en inteligencia artificial y tecnologias avanzadas, UNMSM
+**Course:** Research Methods and Scientific Integrity in AI and Advanced Technologies, UNMSM
 
-**Estado:** protocolo de investigacion y prueba de concepto con datos sinteticos
+**Status:** research protocol and proof of concept using synthetic data
 
-## Proyecto en un parrafo
+## Project in one paragraph
 
-Esta investigacion propone desarrollar y validar un modelo de aprendizaje automatico y analisis geoespacial que estime, para cada unidad territorial de Comas y cada mes, el riesgo de delitos patrimoniales del periodo siguiente. El estudio integrara denuncias policiales autorizadas, variables censales y caracteristicas territoriales. Su producto esperado es un prototipo TRL 4 para apoyo a la gestion preventiva; no identifica personas, no predice autores y no autoriza decisiones policiales automaticas. El pipeline actual usa exclusivamente datos sinteticos y demuestra reproducibilidad informatica, no eficacia en condiciones reales.
+This research proposes developing and validating a machine-learning and geospatial-analysis model that estimates next-month property-crime risk for territorial units in Comas. The study will integrate authorized police complaint records, census variables, and territorial characteristics. Its expected product is a TRL 4 prototype for preventive-management decision support; it does not identify individuals, predict offenders, or authorize automated policing decisions. The current pipeline uses synthetic data exclusively and demonstrates computational reproducibility, not effectiveness under real-world conditions.
 
-## Pregunta y objetivo general
+## Research question and general objective
 
-**Pregunta:** ¿En que medida un modelo de aprendizaje automatico que integra antecedentes delictivos, variables socioeconomicas y caracteristicas geoespaciales predice el riesgo mensual de delitos patrimoniales en unidades territoriales de Comas, en comparacion con baselines historicos, bajo validacion temporal y espacial?
+**Question:** To what extent can a machine-learning model integrating crime history, socioeconomic variables, and geospatial characteristics predict monthly property-crime risk across territorial units in Comas, compared with historical baselines, under temporal and spatial validation?
 
-**Objetivo:** desarrollar y validar dicho modelo, evaluar su discriminacion, calibracion, utilidad y estabilidad territorial, e implementar salvaguardas de privacidad, equidad, explicabilidad y supervision humana.
+**Objective:** To develop and validate this model; evaluate its discrimination, calibration, utility, and territorial stability; and implement privacy, fairness, explainability, and human-oversight safeguards.
 
-## Mapa del repositorio
+## Repository map
 
-| Carpeta | Contenido |
+| Folder | Content |
 |---|---|
-| `01_paradigm/` | Paradigma, alcance y posicion epistemologica. |
-| `02_method/` | Comparacion de metodos y matriz de consistencia. |
-| `03_protocol/` | Esquema inicial y protocolo completo v1.0. |
-| `04_literature/` | Revision exploratoria, protocolo de busqueda y brechas. |
-| `05_pipeline/` | Datos sinteticos, codigo, notebook y resultados tecnicos. |
-| `06_repro_audit/` | Auditoria y lista de verificacion de reproducibilidad. |
-| `07_model_card/` | Ficha del modelo y ficha del conjunto de datos. |
-| `09_ethics/` | Protocolo etico y limites de uso. |
-| `10_data_mgmt/` | Plan de gestion de datos. |
-| `11_bias_audit/` | Plan de evaluacion de sesgos y desempeno por subgrupos. |
-| `12_integrity/` | Politica de uso de IA e integridad cientifica. |
+| `01_paradigm/` | Paradigm, scope, and epistemological position. |
+| `02_method/` | Method comparison and consistency matrix. |
+| `03_protocol/` | Initial outline and complete protocol v1.0. |
+| `04_literature/` | Exploratory review, search protocol, and research gaps. |
+| `05_pipeline/` | Synthetic data, code, notebook, and technical results. |
+| `06_repro_audit/` | Reproducibility audit and verification checklist. |
+| `07_model_card/` | Model card and dataset datasheet. |
+| `09_ethics/` | Ethics protocol and use limitations. |
+| `10_data_mgmt/` | Research data management plan. |
+| `11_bias_audit/` | Bias and subgroup-performance audit plan. |
+| `12_integrity/` | AI-use and scientific-integrity policy. |
 
-## Estado de la evidencia
+## Evidence status
 
-- **Completado:** formulacion metodologica, protocolo v1.0, documentos de gobernanza y pipeline sintetico reproducible.
-- **Preliminar:** revision exploratoria de literatura; sus conteos PRISMA anteriores no deben considerarse resultados definitivos hasta ejecutar y exportar las busquedas.
-- **Pendiente:** autorizacion y acceso a datos reales, protocolo de geocodificacion, revision por comite de etica, busqueda sistematica auditada y validacion externa.
+- **Completed:** methodological formulation, protocol v1.0, governance documents, and reproducible synthetic pipeline.
+- **Preliminary:** exploratory literature review. Previous PRISMA counts must not be treated as final results until searches and exports are completed.
+- **Pending:** authorization and access to real data, geocoding protocol, ethics review, auditable systematic search, and external validation.
 
-## Reproduccion de la prueba de concepto
+## Reproducing the proof of concept
 
 ```bash
 cd 05_pipeline
@@ -49,14 +49,14 @@ python data/create_dataset.py
 python src/run_experiments.py
 ```
 
-Los resultados sinteticos no deben citarse como evidencia sobre seguridad ciudadana en Comas. Consulte `05_pipeline/README.md` para las rutas local, Docker y Colab.
+Synthetic results must not be cited as evidence about public safety in Comas. See `05_pipeline/README.md` for local, Docker, and Colab instructions.
 
-## Uso responsable
+## Responsible use
 
-No se deben subir a GitHub registros SIDPOL, direcciones, coordenadas puntuales, datos de victimas, denunciantes o personas investigadas. Las salidas publicas seran agregadas y sujetas a control de revelacion. Cualquier uso institucional requerira autorizacion, evaluacion etica, validacion con datos reales, auditoria de sesgos y decision humana documentada.
+SIDPOL records, addresses, point coordinates, victim data, complainant data, or information about investigated persons must never be uploaded to GitHub. Public outputs will be aggregated and subjected to disclosure control. Any institutional use will require authorization, ethics review, validation with real data, bias auditing, and documented human decision-making.
 
-## Fuentes normativas y metodologicas clave
+## Key methodological and regulatory sources
 
-- Congreso de la Republica del Peru. Ley N.° 29733, Ley de Proteccion de Datos Personales.
-- CONCYTEC. Directiva N.° 001-2022-CONCYTEC-P para el uso de niveles de madurez tecnologica.
+- Congress of the Republic of Peru. Law No. 29733, Personal Data Protection Law.
+- CONCYTEC. Directive No. 001-2022-CONCYTEC-P on Technology Readiness Levels.
 - Page et al. (2021). PRISMA 2020 statement. *BMJ*, 372, n71. https://doi.org/10.1136/bmj.n71

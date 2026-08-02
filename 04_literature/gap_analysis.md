@@ -1,21 +1,21 @@
-# Analisis preliminar de brechas
+# Preliminary Research Gap Analysis
 
-Estas brechas son proposiciones que la busqueda sistematica debera confirmar, matizar o rechazar. No se presentan como hallazgos definitivos.
+These gaps are propositions that the systematic search must confirm, refine, or reject. They are not presented as final findings.
 
-| Brecha candidata | Evidencia necesaria | Respuesta del proyecto |
+| Candidate gap | Evidence required | Project response |
 |---|---|---|
-| Poca validacion publicada a escala intradistrital en Comas. | Busqueda regional reproducible y consulta de repositorios peruanos. | Estudio localizado con unidad territorio-mes. |
-| Predominio de evaluaciones aleatorias que ignoran tiempo o espacio. | Extraer particion y horizonte de cada estudio incluido. | Validacion temporal rodante y espacial agrupada. |
-| Comparacion insuficiente con baselines operativamente simples. | Registrar comparadores de cada estudio. | Baselines de prevalencia, persistencia y hotspot historico. |
-| Integracion limitada de denuncias, censo y entorno urbano. | Documentar fuentes y granularidades utilizadas. | Pipeline multifuente con trazabilidad y analisis de sensibilidad. |
-| Reporte centrado en discriminacion y poco en calibracion/utilidad. | Extraer metricas, calibracion e intervalos. | PR-AUC, Brier, curvas de calibracion, errores e incertidumbre. |
-| Riesgos de sesgo y realimentacion tratados de modo superficial. | Evaluar documentacion de equidad, gobernanza y uso. | Auditoria territorial, model card, supervision y criterios de no uso. |
-| Baja reproducibilidad de datos y transformaciones. | Verificar codigo, datos, parametros y versiones disponibles. | Scripts, DVC, MLflow curado, hashes y prueba de clon limpio. |
+| Limited published validation at the intra-district scale in Comas. | Reproducible regional search and consultation of Peruvian repositories. | Local study using territory-month observations. |
+| Frequent use of random evaluation that ignores time or space. | Extract each study's split and forecast horizon. | Rolling temporal and grouped spatial validation. |
+| Insufficient comparison with operationally simple baselines. | Record every included study's comparator. | Prevalence, persistence, and historical-hotspot baselines. |
+| Limited integration of complaints, census data, and urban context. | Document sources and granularities used in prior work. | Multi-source pipeline with provenance and sensitivity analysis. |
+| Reporting focused on discrimination rather than calibration and utility. | Extract metrics, calibration, and uncertainty estimates. | PR-AUC, Brier score, calibration curves, errors, and intervals. |
+| Superficial treatment of bias and feedback risks. | Assess fairness, governance, and intended-use reporting. | Territorial audit, model card, oversight, and non-use criteria. |
+| Limited reproducibility of data transformations. | Verify available code, data, parameters, and versions. | Scripts, DVC, curated MLflow summaries, hashes, and clean-clone testing. |
 
-## Contribucion propuesta
+## Proposed contribution
 
-La contribucion no sera afirmar que un algoritmo complejo siempre supera a los metodos existentes. Sera evaluar, con un diseno auditable, si la integracion espacio-temporal mejora prediccion y calibracion frente a baselines en Comas, bajo restricciones explicitas de privacidad y uso. Un resultado nulo o un modelo simple superior tambien constituiria evidencia util.
+The contribution is not a claim that a complex algorithm must outperform existing methods. It is an auditable evaluation of whether spatiotemporal integration improves prediction and calibration over baselines in Comas under explicit privacy and use constraints. A null result or a superior simple model would also be valuable evidence.
 
-## Criterio de confirmacion
+## Confirmation criterion
 
-Una brecha solo se trasladara a la introduccion final si la matriz de estudios permite sostenerla. La frase final indicara alcance de bases, fechas, numero de estudios y limitaciones, evitando generalizaciones universales.
+A gap will enter the final introduction only when supported by the completed evidence matrix. The final claim will state the databases, dates, number of studies, scope, and limitations and will avoid universal generalizations.

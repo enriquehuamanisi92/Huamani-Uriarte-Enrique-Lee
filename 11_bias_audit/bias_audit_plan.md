@@ -1,34 +1,30 @@
-# Plan de auditoria de sesgos
+# Bias Audit Plan
 
-## Alcance
+## Scope
 
-En la fase sintetica solo se prueba el procedimiento. Una conclusion de equidad requiere datos reales apropiados, contexto y participacion institucional/comunitaria. Igualdad de metricas no garantiza ausencia de dano.
+The synthetic phase tests only the audit procedure. A substantive fairness conclusion requires appropriate real data, context, and institutional and community participation. Equal metrics do not guarantee absence of harm.
 
-## Fuentes de sesgo
+## Bias sources
 
-- Cobertura desigual de denuncia y geocodificacion.
-- Cambios en clasificacion o presencia policial.
-- Variables territoriales que actuan como proxies de condiciones protegidas.
-- Celdas con tamanos pequenos e incertidumbre alta.
-- Seleccion de umbral que distribuye falsos positivos y negativos.
-- Deriva y realimentacion tras cualquier intervencion.
+- Unequal complaint and geocoding coverage.
+- Changes in crime classification or police presence.
+- Territorial variables acting as proxies for protected characteristics.
+- Small cells with high uncertainty.
+- Threshold choices that distribute false positives and false negatives.
+- Drift and feedback after any intervention.
 
-## Evaluacion preespecificada
+## Prespecified assessment
 
-1. Describir cobertura y faltantes por sector y tiempo.
-2. Comparar prevalencia registrada y tamanos de muestra.
-3. Reportar PR-AUC, Brier, calibracion, FPR, FNR, precision y recall por sector con intervalos bootstrap.
-4. Evaluar sensibilidad a unidad espacial y umbral.
-5. Comparar un modelo con y sin variables potencialmente problematicas.
-6. Inspeccionar importancia, errores extremos y estabilidad temporal.
-7. Documentar quien asume el costo de cada tipo de error.
+1. Describe coverage and missingness by sector and time.
+2. Compare recorded prevalence and sample sizes.
+3. Report PR-AUC, Brier score, calibration, FPR, FNR, precision, and recall by sector with bootstrap intervals.
+4. Test sensitivity to spatial unit and threshold.
+5. Compare models with and without potentially problematic variables.
+6. Inspect importance, extreme errors, and temporal stability.
+7. Document who bears the cost of each error type.
 
-No se haran comparaciones de subgrupos con conteos insuficientes. Las categorias territoriales no se presentaran como atributos intrinsecos de sus habitantes.
+Subgroups with insufficient counts will not be compared. Territorial categories will not be presented as inherent characteristics of residents.
 
-## Criterios de revision
+## Review and monitoring
 
-No se fija una tolerancia universal sin contexto. Antes de un piloto, responsables y representantes pertinentes definiran limites de desempeno y seguridad. Una disparidad persistente, calibracion deficiente o baja cobertura puede exigir recoleccion adicional, modelo separado, mayor agregacion o no uso.
-
-## Monitoreo
-
-Version, periodo, cobertura, deriva de predictores, calibracion y errores se revisaran con una frecuencia definida antes del despliegue. Existira una regla de suspension y un responsable con autoridad para aplicarla.
+No universal disparity tolerance is assumed. Before a pilot, relevant parties must define performance and safety limits. Persistent disparity, poor calibration, or insufficient coverage may require additional data, a different model, greater aggregation, or non-use. Version, coverage, predictor drift, calibration, and errors will be reviewed on a prespecified schedule, with a named person authorized to suspend use.

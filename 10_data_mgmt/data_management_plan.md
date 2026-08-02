@@ -1,45 +1,39 @@
-# Plan de gestion de datos de investigacion
+# Research Data Management Plan
 
-## 1. Tipos de datos
+## 1. Data categories
 
-| Categoria | Ejemplo | Clasificacion | Repositorio permitido |
+| Category | Example | Classification | Permitted repository |
 |---|---|---|---|
-| Publico sintetico | CSV generado y resultados demostrativos. | Publico, rotulado sintetico. | Git/DVC. |
-| Publico oficial | Cartografia o tablas abiertas con licencia. | Segun licencia. | Git/DVC o almacenamiento institucional. |
-| Restringido fuente | Registros SIDPOL autorizados. | Confidencial/sensible. | Entorno institucional controlado. |
-| Derivado restringido | Datos geocodificados o celdas pequenas. | Confidencial mientras exista revelacion. | Entorno institucional controlado. |
-| Derivado publicable | Estadisticas agregadas aprobadas. | Publico tras revision. | Repositorio institucional/Git. |
+| Public synthetic | Generated CSV and demonstration results. | Public; clearly labeled synthetic. | Git/DVC. |
+| Public official | Open cartography or tables. | According to license. | Git/DVC or institutional storage. |
+| Restricted source | Authorized SIDPOL records. | Confidential/sensitive. | Controlled institutional environment. |
+| Restricted derivative | Geocoded data or small cells. | Confidential while disclosure risk exists. | Controlled institutional environment. |
+| Publishable derivative | Approved aggregate statistics. | Public after review. | Institutional repository/Git. |
 
-## 2. Responsabilidades
+## 2. Responsibilities
 
-El custodio institucional conserva autoridad sobre los datos fuente. El investigador principal asegura cumplimiento del protocolo, accesos, versionado y reporte. Los colaboradores reciben solo el acceso indispensable y aceptan por escrito finalidad, confidencialidad y procedimiento de incidentes.
+The institutional custodian retains authority over source data. The principal investigator is responsible for protocol compliance, access, versioning, and reporting. Collaborators receive only necessary access and formally accept purpose, confidentiality, and incident procedures.
 
-## 3. Ciclo de vida
+## 3. Data life cycle
 
-1. **Adquisicion:** registrar fuente, autorizacion, fecha, licencia y hash.
-2. **Ingesta:** validar esquema en zona aislada; no sobrescribir originales.
-3. **Procesamiento:** scripts versionados crean capas intermedias y analiticas.
-4. **Analisis:** ambiente controlado, parametros y semillas registrados.
-5. **Revision:** comprobar calidad, revelacion y coherencia antes de exportar.
-6. **Preservacion:** conservar codigo, metadatos y productos permitidos.
-7. **Eliminacion:** ejecutar y documentar la politica acordada con el custodio.
+1. **Acquisition:** record source, authorization, date, license, and hash.
+2. **Ingestion:** validate schemas in an isolated area and preserve originals.
+3. **Processing:** versioned scripts create intermediate and analytical layers.
+4. **Analysis:** use a controlled environment and record parameters and seeds.
+5. **Review:** check quality, disclosure risk, and consistency before export.
+6. **Preservation:** retain permitted code, metadata, and outputs.
+7. **Deletion:** execute and document the policy agreed with the custodian.
 
-## 4. Convenciones y metadatos
+## 4. Metadata and quality
 
-Fechas ISO 8601; UTF-8; identificadores estables no semanticos; sistema de coordenadas declarado; diccionario con nombre, tipo, unidad, fuente, transformacion, faltantes y sensibilidad. Cada version analitica tendra hash, commit, fecha y responsable.
+Use ISO 8601 dates, UTF-8, stable non-semantic identifiers, and a declared coordinate reference system. The dictionary will specify name, type, unit, source, transformation, missingness, and sensitivity. Each analytical version will have a hash, commit, date, and owner.
 
-## 5. Calidad
+Quality controls cover schemas, ranges, uniqueness, duplicates, missing values, temporal consistency, spatial membership, geocoding rates, and classification changes. Corrections will be scripted; manual changes require an audit log.
 
-Controles de esquema, rango, unicidad, duplicados, faltantes, consistencia temporal, pertenencia espacial, tasas de geocodificacion y cambios de clasificacion. Toda correccion sera scriptada; los cambios manuales requeriran bitacora.
+## 5. FAIR principles with safeguards
 
-## 6. FAIR con limites
+The project will maximize findability, controlled accessibility, interoperability, and reuse of code and metadata. FAIR does not mean open sensitive data. Microdata will remain restricted; synthetic data, dictionaries, and safe authorized aggregates may be published.
 
-Se maximizaran encontrabilidad, accesibilidad controlada, interoperabilidad y reutilizacion del codigo y metadatos. FAIR no significa datos abiertos: los microdatos sensibles permaneceran restringidos. Se publicaran datos sinteticos, diccionarios y, cuando sea seguro y autorizado, estadisticas agregadas.
+## 6. Backup, retention, and disposal
 
-## 7. Respaldo y continuidad
-
-Copias cifradas y versionadas segun politica institucional, prueba periodica de restauracion y separacion entre respaldo y ambiente de trabajo. Git no es respaldo autorizado de datos reales.
-
-## 8. Retencion
-
-La duracion concreta se fijara en el convenio y aprobacion etica. Al cierre se eliminan copias de trabajo, credenciales y llaves no necesarias; se conserva evidencia no sensible para auditoria conforme a las reglas institucionales.
+Backups will be encrypted, versioned, institutionally approved, and periodically restored in tests. Git is not an authorized backup for real data. The retention period will be defined in the agreement and ethics approval. At closure, unnecessary working copies, credentials, and keys will be verifiably removed.

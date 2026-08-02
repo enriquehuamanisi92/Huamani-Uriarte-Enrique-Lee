@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "Si utiliza este repositorio, cite al autor y la version consultada."
-title: "Prediccion del riesgo delictivo urbano en Comas"
+message: "If you use this repository, cite the author and the version consulted."
+title: "Urban Crime Risk Prediction in Comas"
 type: software
 authors:
   - family-names: "Huamani Uriarte"

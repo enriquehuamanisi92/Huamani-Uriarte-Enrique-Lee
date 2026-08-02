@@ -1,32 +1,32 @@
-# Auditoria de reproducibilidad
+# Reproducibility Audit
 
-## Alcance
+## Scope
 
-Auditoria del artefacto sintetico actual. No certifica la futura fase con SIDPOL.
+This audit covers the current synthetic artifact. It does not certify the future SIDPOL phase.
 
-| Componente | Estado | Evidencia / accion pendiente |
+| Component | Status | Evidence or pending action |
 |---|---|---|
-| Codigo de generacion | Cumple | `05_pipeline/data/create_dataset.py`, semilla fija. |
-| Separacion temporal | Parcial | Existe holdout por ano; falta ventana rodante y prueba espacial. |
-| Prevencion de fuga | Parcial | Los rezagos sinteticos usan `shift`; faltan tests automatizados. |
-| Dependencias | Parcial | Existe `requirements.txt`; deben fijarse versiones y Python. |
-| Datos | Cumple para demo | CSV sintetico y script; los datos reales nunca iran al repositorio publico. |
-| Registro de experimentos | Parcial | MLflow existe, pero se versionaron demasiados archivos de ejecucion. |
-| Resultados | Cumple para demo | CSV consolidado; debe incluir media, dispersion e intervalos. |
-| Notebook | Parcial | Sin salidas guardadas; verificar ejecucion limpia. |
-| Contenedor | Parcial | Dockerfile presente; falta prueba automatizada de construccion. |
-| Integridad de artefactos | Pendiente | Registrar SHA-256 de datos, configuracion y commit. |
-| Reproduccion independiente | Pendiente | Una segunda persona debe clonar y registrar resultado real. |
+| Data-generation code | Meets current requirement | `05_pipeline/data/create_dataset.py` uses a fixed seed. |
+| Temporal split | Partial | Year holdout exists; rolling temporal and spatial tests remain pending. |
+| Leakage prevention | Partial | Synthetic lags use `shift`; additional automated tests are required. |
+| Dependencies | Partial | `requirements.txt` exists; versions and Python must be pinned. |
+| Data | Meets demo requirement | Synthetic CSV and generator are present; real data will never enter the public repository. |
+| Experiment tracking | Partial | MLflow was used; raw run stores were removed from Git to reduce noise. |
+| Results | Meets demo requirement | Consolidated CSV exists; uncertainty summaries remain pending. |
+| Notebook | Partial | Clean end-to-end execution must be independently verified. |
+| Container | Partial | Dockerfile exists; automated build verification is pending. |
+| Artifact integrity | Pending | Record SHA-256 values for data, configuration, and commit. |
+| Independent reproduction | Pending | A second person must clone and document the actual result. |
 
-## Prueba de clon limpio
+## Clean-clone test
 
-1. Clonar una version etiquetada.
-2. Crear ambiente con la version documentada de Python.
-3. Instalar dependencias sin modificaciones manuales.
-4. Regenerar el CSV sintetico.
-5. Ejecutar experimentos y comparar filas, modelos y tolerancia de metricas.
-6. Registrar sistema operativo, Python, tiempo, commit y diferencias.
+1. Clone a tagged version.
+2. Create an environment with the documented Python version.
+3. Install dependencies without manual changes.
+4. Regenerate the synthetic CSV.
+5. Run experiments and compare rows, models, and metric tolerances.
+6. Record operating system, Python version, runtime, commit, and differences.
 
-## Hallazgo principal
+## Principal finding
 
-Los valores actuales demuestran que el software procesa datos sinteticos. No prueban validez externa. Antes de una entrega final deben excluirse nuevas carpetas `mlruns/` de Git, conservar un resumen curado y gestionar artefactos extensos mediante DVC o almacenamiento institucional.
+Current values show that the software processes synthetic data; they do not establish external validity. Curated summaries should remain in `docs/`, while extensive artifacts should be handled through DVC or institutional storage.

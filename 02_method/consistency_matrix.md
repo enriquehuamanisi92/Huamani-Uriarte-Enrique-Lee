@@ -1,35 +1,35 @@
-# Matriz de consistencia
+# Research Consistency Matrix
 
-## Formulacion central
+## Core formulation
 
-| Elemento | Formulacion operacional |
+| Element | Operational formulation |
 |---|---|
-| Problema | La gestion preventiva en Comas dispone principalmente de informacion retrospectiva y fragmentada; no se ha validado localmente un modelo espacio-temporal que integre denuncias, atributos censales y entorno urbano para estimar riesgo del periodo siguiente. |
-| Pregunta general | ¿En que medida un modelo integrado predice el riesgo mensual de delitos patrimoniales por unidad territorial, frente a baselines historicos, bajo validacion temporal y espacial? |
-| Objetivo general | Desarrollar y validar un modelo de ML y analisis geoespacial para estimar el riesgo delictivo mensual y producir salidas agregadas utiles para gestion preventiva responsable. |
-| Hipotesis general | El modelo integrado presenta mejor discriminacion y utilidad predictiva fuera de muestra que un baseline basado solo en incidencia historica, sin deterioro sustantivo de calibracion entre sectores territoriales. |
-| Unidad de analisis propuesta | Unidad territorial agregada de Comas por mes. La geometria definitiva (manzana agrupada, cuadrilla o hexagono H3) se fijara con la calidad y restricciones de los datos autorizados. |
-| Poblacion de estudio | Observaciones territorio-mes de Comas durante 2018-2025 que cumplan reglas de calidad, geocodificacion y privacidad. |
+| Problem | Preventive management in Comas relies largely on retrospective, fragmented information. No locally validated spatiotemporal model integrates complaints, census attributes, and urban context to estimate next-period risk. |
+| General question | To what extent can an integrated model predict monthly property-crime risk by territorial unit, compared with historical baselines, under temporal and spatial validation? |
+| General objective | Develop and validate an ML and geospatial model for monthly crime-risk estimation and responsible preventive decision support. |
+| General hypothesis | The integrated model will show better out-of-sample discrimination and predictive utility than a crime-history-only baseline, without substantial calibration deterioration across territorial sectors. |
+| Proposed unit of analysis | Aggregated territorial unit in Comas by month. The final geometry—grouped census blocks, grid cells, or H3 hexagons—will depend on data quality and disclosure constraints. |
+| Study population | Eligible territory-month observations in Comas during 2018-2025 that meet quality, geocoding, and privacy requirements. |
 
-## Correspondencia de objetivos, variables y analisis
+## Objectives, evidence, and analysis
 
-| Objetivo especifico | Variable o evidencia | Indicador | Analisis previsto |
+| Specific objective | Variable or evidence | Indicator | Planned analysis |
 |---|---|---|---|
-| OE1. Construir una base espacio-temporal documentada. | Denuncias agregadas, censo y entorno urbano. | Completitud, duplicados, geocodificacion, consistencia temporal. | Perfilamiento, reglas de calidad y analisis de faltantes. |
-| OE2. Caracterizar patrones espaciales y temporales. | Conteo y tasa de delitos patrimoniales. | Tendencia, estacionalidad, Moran global/local. | Series temporales, mapas y autocorrelacion espacial. |
-| OE3. Entrenar modelos y baselines. | Predictores conocidos hasta el mes t. | Probabilidad o riesgo para t+1. | Regresion logistica, modelos de arboles y baseline de persistencia. |
-| OE4. Validar generalizacion. | Predicciones fuera de muestra. | PR-AUC, ROC-AUC, Brier, calibracion, precision, recall y F1. | Ventanas temporales rodantes y particiones espaciales por grupos. |
-| OE5. Examinar interpretabilidad y sesgo. | Errores y explicaciones por sector. | FNR, FPR, calibracion, SHAP/permutacion. | Analisis estratificado con intervalos de confianza. |
-| OE6. Traducir resultados a apoyo preventivo. | Mapas agregados y escenarios. | Legibilidad, estabilidad y utilidad con supervision humana. | Evaluacion tecnica y, si se autoriza, validacion con expertos. |
+| SO1. Build a documented spatiotemporal dataset. | Aggregated complaints, census, and urban context. | Completeness, duplicates, geocoding, temporal consistency. | Profiling, quality rules, and missingness analysis. |
+| SO2. Characterize spatial and temporal patterns. | Property-crime count and rate. | Trend, seasonality, global/local Moran statistics. | Time series, maps, and spatial autocorrelation. |
+| SO3. Train models and baselines. | Predictors available through month t. | Probability or risk for t+1. | Logistic regression, tree models, and persistence baseline. |
+| SO4. Validate generalization. | Out-of-sample predictions. | PR-AUC, ROC-AUC, Brier score, calibration, precision, recall, F1. | Rolling temporal windows and grouped spatial splits. |
+| SO5. Examine interpretability and bias. | Errors and explanations by sector. | FNR, FPR, calibration, SHAP/permutation importance. | Stratified analysis with confidence intervals. |
+| SO6. Translate results into preventive support. | Aggregated maps and scenarios. | Readability, stability, and supervised utility. | Technical and, if authorized, expert evaluation. |
 
-## Variables principales
+## Main variables
 
-| Rol | Variable | Definicion preliminar | Escala/fuente |
+| Role | Variable | Preliminary definition | Scale/source |
 |---|---|---|---|
-| Resultado primario | Incidencia delictiva del mes siguiente | Conteo o tasa de denuncias patrimoniales en t+1; la categorizacion de riesgo sera secundaria. | SIDPOL autorizado, agregado por territorio-mes. |
-| Predictora temporal | Historia reciente | Rezagos de 1, 3, 6 y 12 meses, tendencia y estacionalidad, sin usar informacion futura. | Derivada de denuncias. |
-| Predictora socioeconomica | Vulnerabilidad territorial | Indice preespecificado a partir de variables censales, documentando vigencia temporal. | Censo Nacional 2017/INEI. |
-| Predictora urbana | Exposicion y entorno | Densidad comercial, conectividad, iluminacion u otros indicadores disponibles. | Cartografia y registros oficiales. |
-| Estratificacion | Sector territorial | Agrupacion espacial usada para examinar estabilidad y disparidad de error. | Cartografia oficial. |
+| Primary outcome | Next-month crime incidence | Count or population-adjusted rate of property-crime complaints at t+1; risk categories are secondary. | Authorized, aggregated SIDPOL data. |
+| Temporal predictor | Recent history | 1-, 3-, 6-, and 12-month lags, trend, and seasonality, using no future information. | Derived from complaints. |
+| Socioeconomic predictor | Territorial vulnerability | Prespecified index derived from census variables with temporal-validity documentation. | 2017 National Census/INEI. |
+| Urban predictor | Exposure and environment | Commercial density, connectivity, lighting, or other available indicators. | Official cartography and records. |
+| Stratifier | Territorial sector | Spatial grouping for stability and error-disparity assessment. | Official cartography. |
 
-La definicion final se congelara antes de evaluar el conjunto de prueba. No se convertira un percentil sintetico en umbral institucional sin justificacion empirica y participacion de responsables autorizados.
+The final outcome and thresholds will be frozen before examining the test set. A synthetic percentile will not become an institutional risk threshold without empirical justification and authorized stakeholder participation.

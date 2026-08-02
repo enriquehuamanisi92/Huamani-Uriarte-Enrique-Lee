@@ -1,41 +1,23 @@
-# Protocolo etico y de uso responsable
+# Ethics and Responsible-Use Protocol
 
-## Principio rector
+## Governing principle
 
-El proyecto estima patrones territoriales agregados para investigacion y eventual apoyo preventivo. No produce perfiles individuales ni reemplaza el juicio profesional. La factibilidad tecnica no constituye autorizacion etica ni legal.
+The project estimates aggregated territorial patterns for research and possible preventive support. It does not create individual profiles or replace professional judgment. Technical feasibility is not ethical or legal authorization.
 
-## Riesgos y mitigacion
+## Risks and controls
 
-| Riesgo | Mecanismo | Control minimo |
+| Risk | Mechanism | Minimum control |
 |---|---|---|
-| Reidentificacion | Coordenadas, baja frecuencia o combinaciones raras. | Agregacion, supresion, umbral minimo, revision de revelacion. |
-| Sesgo de medicion | Las denuncias dependen de acceso y propension a reportar. | Documentar cobertura, contrastar fuentes agregadas, lenguaje no causal. |
-| Realimentacion | Mas vigilancia puede generar mas registros. | No usar despliegue previo como verdad neutral; monitoreo y revision humana. |
-| Estigmatizacion | Etiquetas territoriales pueden perjudicar comunidades. | Mapas con incertidumbre, vigencia limitada y acceso proporcional. |
-| Desplazamiento de recursos | Falsos positivos/negativos afectan prevencion. | Analisis de costo, umbrales acordados y prohibicion de automatizacion. |
-| Deriva | Cambian delito, denuncia, ciudad y registro. | Monitoreo temporal, recalibracion y reglas de suspension. |
-| Uso secundario | Datos o puntajes reutilizados fuera del objetivo. | Acuerdo de uso, registro de acceso y prohibiciones explicitas. |
+| Re-identification | Coordinates, low counts, or rare combinations. | Aggregation, suppression, minimum-count rules, disclosure review. |
+| Measurement bias | Complaints depend on access and willingness to report. | Coverage documentation, complementary aggregate sources, non-causal language. |
+| Feedback loops | Increased surveillance may generate more records. | Do not treat prior enforcement as neutral truth; monitor and require human review. |
+| Territorial stigma | Risk labels may harm communities. | Uncertainty-aware maps, limited validity, proportionate access. |
+| Resource displacement | False results may affect prevention. | Cost analysis, agreed thresholds, and no automated allocation. |
+| Drift | Crime, reporting, and institutions change. | Temporal monitoring, recalibration, and suspension rules. |
+| Secondary use | Data or scores may be reused beyond purpose. | Use agreement, access logs, and explicit prohibitions. |
 
-## Proteccion de datos
+## Data protection and oversight
 
-La fase real requerira base juridica, autorizacion del custodio y evaluacion por la instancia etica aplicable. Se observara la Ley N.° 29733 y la normativa vigente al momento de la ejecucion. Se aplicaran finalidad, proporcionalidad, minimizacion, calidad, seguridad y acceso restringido.
+The real-data phase requires a lawful basis, custodian authorization, and applicable ethics review. Processing will follow Law No. 29733 and regulations in force. Controls include pseudonymization before analysis, separation of keys, encryption, role-based least-privilege access, logging, prohibition of unauthorized copies, verified deletion, and an incident-response plan.
 
-- Seudonimizacion antes del acceso del equipo analitico.
-- Separacion de llaves y datos de investigacion.
-- Cifrado en transito y reposo.
-- Acceso por rol, minimo privilegio y registro de eventos.
-- Prohibicion de copiar datos reales a equipos o nubes no autorizados.
-- Eliminacion verificable al terminar el periodo de retencion.
-- Plan de notificacion, contencion y aprendizaje ante incidentes.
-
-## Supervision humana y impugnacion
-
-Toda interpretacion institucional identificara responsable, fecha, version, incertidumbre y evidencia complementaria. Ningun puntaje sera instruccion automatica. Antes de un piloto se definira como una persona afectada o una comunidad puede solicitar explicacion, correccion de datos o revision de una decision.
-
-## Criterios de no avance
-
-El estudio se detendra o volvera a fase de diseno si no existe autorizacion, si la agregacion no protege identidades, si el modelo no supera baselines, si hay disparidades graves no mitigables, si la calibracion es inadecuada o si el uso propuesto excede el objetivo aprobado.
-
-## Transparencia
-
-Las publicaciones declararan fuentes, exclusiones, limitaciones, conflictos, financiamiento y uso de IA. No se publicaran datos sensibles ni afirmaciones causales derivadas de un diseno predictivo.
+No score may become an automatic instruction. Before any pilot, the project must define accountability, explanation, correction, and appeal mechanisms. Work will stop or return to design if authorization is absent, aggregation is unsafe, baselines are not exceeded, serious disparities cannot be mitigated, calibration is inadequate, or the proposed use exceeds the approved purpose.

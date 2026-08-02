@@ -1,28 +1,28 @@
-# Politica de integridad cientifica y uso de IA
+# Scientific Integrity and AI-Use Policy
 
-## Principios
+## Principles
 
-El autor conserva responsabilidad por exactitud, originalidad, referencias, codigo y decisiones. Una herramienta de IA no es autora, revisora por pares ni fuente de evidencia.
+The author remains responsible for accuracy, originality, citations, code, and decisions. An AI tool is not an author, peer reviewer, or evidence source.
 
-## Usos permitidos con verificacion
+## Permitted uses with verification
 
-- Mejorar claridad y estructura de borradores propios.
-- Sugerir codigo, pruebas o documentacion que luego se inspecciona y ejecuta.
-- Proponer terminos de busqueda sin sustituir la busqueda en bases.
-- Ayudar a detectar inconsistencias, manteniendo una bitacora de cambios materiales.
+- Improve the clarity and structure of the author's drafts.
+- Suggest code, tests, or documentation that is subsequently inspected and executed.
+- Propose search terms without replacing database searches.
+- Help identify inconsistencies while preserving a log of material changes.
 
-## Usos prohibidos
+## Prohibited uses
 
-- Inventar referencias, DOI, resultados, entrevistas, permisos o revisiones.
-- Presentar conteos PRISMA no respaldados por exportaciones.
-- Introducir datos restringidos en servicios no autorizados.
-- Ocultar limitaciones, seleccionar resultados favorables o atribuir a IA responsabilidad del contenido.
-- Copiar el repositorio de otro estudiante o reutilizar texto sin atribucion.
+- Fabricating references, DOIs, results, interviews, permissions, or reviews.
+- Reporting PRISMA counts unsupported by database exports.
+- Entering restricted data into unauthorized services.
+- Concealing limitations, selectively reporting favorable results, or assigning responsibility to AI.
+- Copying another student's repository or reusing text without attribution.
 
-## Declaracion para este repositorio
+## Disclosure for this repository
 
-En agosto de 2026 se utilizo asistencia de IA para revisar estructura, redaccion y codigo del repositorio. La estructura del repositorio de un companero se consulto como referencia de cobertura, sin copiar su tema ni sus datos. El autor debe leer, contrastar con las consignas del curso, verificar cada fuente y aceptar o corregir los cambios antes de la entrega.
+In August 2026, AI assistance was used to review and improve the repository's structure, writing, documentation, and tests. A classmate's public repository was consulted as a structural benchmark; its topic, text, and data were not copied. The author must read the material, compare it with course requirements, verify every source, and accept or revise each change before submission.
 
-## Trazabilidad
+## Traceability
 
-Los cambios se registran mediante commits. Las afirmaciones empiricas futuras deben vincularse con datos y scripts; las bibliograficas con una fuente recuperable; las decisiones humanas con fecha y responsable. Correcciones posteriores se haran de forma visible, no silenciosa.
+Changes are recorded through commits. Future empirical claims must link to data and scripts, bibliographic claims to retrievable sources, and human decisions to a date and responsible person. Corrections will be made visibly rather than silently.
