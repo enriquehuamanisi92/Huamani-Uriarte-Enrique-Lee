@@ -90,12 +90,12 @@ foreach ($record in $unique) {
     if (-not $candidate) {
         $taDecision = 'exclude'
         $ftDecision = 'not_sought'
-        $reason = 'Fuera del alcance según título; regla automatizada documentada'
+        $reason = 'Outside scope according to title; documented automated rule'
     }
     elseif ($notRetrievedDois -contains $record.doi) {
         $taDecision = 'include'
         $ftDecision = 'not_retrieved'
-        $reason = 'Texto completo no recuperado en acceso abierto'
+        $reason = 'Full text not retrieved through open access'
     }
     elseif ($includedDois -contains $record.doi) {
         $taDecision = 'include'
@@ -105,7 +105,7 @@ foreach ($record in $unique) {
     else {
         $taDecision = 'include'
         $ftDecision = 'exclude'
-        $reason = 'Revisión secundaria, alcance insuficiente o validación no verificable'
+        $reason = 'Secondary review, insufficient scope, or unverifiable validation'
     }
 
     $screening += [pscustomobject]@{
@@ -117,7 +117,7 @@ foreach ($record in $unique) {
         title_abstract_decision = $taDecision
         full_text_decision = $ftDecision
         exclusion_reason = $reason
-        reviewer = 'Enrique Lee Huamani Uriarte; cribado inicial asistido por reglas'
+        reviewer = 'Enrique Lee Huamani Uriarte; initial screening assisted by documented rules'
         decision_date = $SearchDate
     }
 }

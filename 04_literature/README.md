@@ -1,69 +1,44 @@
-# 04. Revisión de literatura
+# 04. Systematic Literature Review
 
-Esta carpeta documenta la revisión exploratoria de literatura del proyecto doctoral sobre predicción territorial del riesgo delictivo mediante aprendizaje automático y análisis geoespacial, con aplicación prevista en el distrito de Comas, Lima.
+This folder documents the systematic rapid review supporting the doctoral project on machine-learning and geospatial methods for territorial urban-crime risk prediction in Comas, Metropolitan Lima.
 
-## Pregunta de revisión
+## Review question
 
-¿Qué métodos, fuentes de datos, estrategias de validación y salvaguardas se han utilizado para predecir el riesgo agregado de delincuencia urbana mediante aprendizaje automático y análisis geoespacial, y qué evidencia existe en contextos latinoamericanos comparables con Comas?
+Which methods, data sources, validation strategies, and safeguards have been used to predict aggregated urban-crime risk through machine learning and geospatial analysis, and what evidence exists in Latin American settings comparable to Comas?
 
-## Contenido de la carpeta
+## Contents
 
-| Archivo | Contenido |
+| File | Purpose |
 |---|---|
-| [`systematic_review.md`](systematic_review.md) | Protocolo de búsqueda, criterios de elegibilidad, estrategia de extracción y síntesis exploratoria. |
-| [`prisma_2020_flow.md`](prisma_2020_flow.md) | Flujo PRISMA 2020 ejecutado, conteos y controles de consistencia. |
-| [`prisma_flow_diagram.svg`](prisma_flow_diagram.svg) | Gráfico PRISMA con los conteos reales de la búsqueda. |
-| [`search_results_2026-08-09.csv`](search_results_2026-08-09.csv) | Exportación congelada de los 100 registros identificados. |
-| [`run_literature_search.ps1`](run_literature_search.ps1) | Script reproducible de consulta, deduplicación y cribado inicial. |
-| [`gap_analysis.md`](gap_analysis.md) | Brechas preliminares, evidencia necesaria para confirmarlas y respuesta propuesta del proyecto. |
-| [`search_log.csv`](search_log.csv) | Bitácora reproducible para registrar consultas, fechas, filtros y resultados por base de datos. |
-| [`screening_log.csv`](screening_log.csv) | Registro de deduplicación y decisiones de selección por título, resumen y texto completo. |
-| [`evidence_extraction.csv`](evidence_extraction.csv) | Matriz para extraer métodos, datos, validación, métricas, calibración, equidad y limitaciones. |
+| [`systematic_review.md`](systematic_review.md) | Complete English-language review, protocol, synthesis, gaps, and conclusions. |
+| [`prisma_2020_flow.md`](prisma_2020_flow.md) | Completed PRISMA 2020 flow, counts, exclusions, and consistency checks. |
+| [`prisma_flow_diagram.svg`](prisma_flow_diagram.svg) | Filled PRISMA 2020 flow diagram. |
+| [`search_log.csv`](search_log.csv) | Exact query, date, filters, exports, and source status. |
+| [`search_results_2026-08-09.csv`](search_results_2026-08-09.csv) | Frozen export of the 100 identified records. |
+| [`screening_log.csv`](screening_log.csv) | Record-level screening decisions and exclusion reasons. |
+| [`evidence_extraction.csv`](evidence_extraction.csv) | Evidence matrix for the 23 included empirical studies. |
+| [`gap_analysis.md`](gap_analysis.md) | Research gaps, required evidence, and project response. |
+| [`run_literature_search.ps1`](run_literature_search.ps1) | Reproducible retrieval, deduplication, and initial-screening script. |
 
-## Alcance y estado actual
+## Current evidence status
 
-El 9 de agosto de 2026 se ejecutó una RSL rápida reproducible en OpenAlex y Crossref. Se identificaron 100 registros, se cribaron 97 registros únicos, se evaluaron 38 informes y se incluyeron 23 estudios empíricos.
+The reproducible rapid review was executed on August 9, 2026, using OpenAlex and Crossref. It identified 100 records, screened 97 unique records, assessed 38 reports, and included 23 empirical studies.
 
-La exportación, decisiones y diagrama están versionados en esta carpeta. Scopus, Web of Science, IEEE Xplore, ACM Digital Library y SciELO permanecen pendientes como ampliación con acceso institucional; los resultados actuales no se presentan como exhaustivos.
+The export, decisions, evidence matrix, and diagram are versioned in this folder. Scopus, Web of Science, IEEE Xplore, ACM Digital Library, and SciELO remain pending as an institutional-access extension. The present results are therefore reported as a reproducible rapid review, not as a universally exhaustive search.
 
-## Hallazgos preliminares
+## Main preliminary findings
 
-La literatura semilla sugiere que la concentración espacial y la dependencia temporal del delito pueden apoyar pronósticos territoriales. Sin embargo, el valor práctico de un modelo depende de la calidad de sus comparadores, del respeto del orden temporal durante la validación y de su capacidad para generalizar a territorios no observados.
+The included literature indicates that spatial concentration, temporal recurrence, mobility, urban form, and relationships among crime types can contribute predictive information. However, performance depends strongly on the spatial unit, forecast horizon, comparator, and validation design. Several studies emphasize accuracy or F1 while providing limited evidence about calibration, uncertainty, external validity, or territorial fairness.
 
-Los registros policiales tampoco constituyen una medición neutral: combinan ocurrencia, denuncia y prácticas institucionales. Por ello, una buena exactitud predictiva no elimina los riesgos de vigilancia desigual, sesgo territorial o ciclos de retroalimentación.
+Police and complaint records are not neutral measurements: they combine occurrence, reporting behavior, and institutional practices. The Comas study must therefore compare machine-learning models with simple baselines, preserve temporal order, assess spatial transfer, report calibration and uncertainty, audit territorial errors, and restrict outputs to aggregated decision support under human oversight.
 
-La revisión orienta cinco compromisos metodológicos para el estudio:
+## Reproducing the search
 
-1. Comparar los modelos de aprendizaje automático con líneas base de prevalencia, persistencia y puntos calientes históricos.
-2. Separar entrenamiento, ajuste y prueba preservando el orden temporal.
-3. Evaluar transferencia espacial en territorios no utilizados para el entrenamiento.
-4. Reportar calibración, incertidumbre y errores territoriales, además de métricas de discriminación.
-5. Limitar los resultados a apoyo agregado para decisiones, nunca a la predicción de personas ni a la vigilancia automatizada.
+From PowerShell:
 
-## Brechas que debe confirmar la búsqueda
+```powershell
+cd 04_literature
+powershell -ExecutionPolicy Bypass -File .\run_literature_search.ps1
+```
 
-- Escasa validación publicada a escala intradistrital en Comas y contextos peruanos comparables.
-- Uso frecuente de particiones aleatorias que ignoran la estructura temporal o espacial.
-- Comparación insuficiente con líneas base operativamente simples.
-- Integración limitada y poco documentada de denuncias, datos censales y contexto urbano.
-- Énfasis en discriminación predictiva, con menor atención a calibración, incertidumbre y utilidad.
-- Tratamiento superficial de sesgos, efectos de retroalimentación y límites de uso.
-- Baja reproducibilidad de transformaciones, parámetros y procedencia de datos.
-
-Estas brechas son hipótesis de trabajo, no conclusiones definitivas. Solo se incorporarán como aportes confirmados cuando estén respaldadas por la matriz de evidencia completa.
-
-## Referencias semilla verificadas
-
-- Chainey, S., Tompson, L., & Uhlig, S. (2008). *The utility of hotspot mapping for predicting spatial patterns of crime*. Security Journal, 21, 4–28. https://doi.org/10.1057/palgrave.sj.8350066
-- Mohler, G. O., et al. (2011). *Self-exciting point process modeling of crime*. Journal of the American Statistical Association, 106(493), 100–108. https://doi.org/10.1198/jasa.2011.ap09546
-- Perry, W. L., et al. (2013). *Predictive Policing: The Role of Crime Forecasting in Law Enforcement Operations*. RAND. https://doi.org/10.7249/RR233
-- Lum, K., & Isaac, W. (2016). *To predict and serve?* Significance, 13(5), 14–19. https://doi.org/10.1111/j.1740-9713.2016.00960.x
-- Meijer, A., & Wessels, M. (2019). *Predictive policing: Review of benefits and drawbacks*. International Journal of Public Administration, 42(12), 1031–1039. https://doi.org/10.1080/01900692.2019.1575664
-- Richardson, R., Schultz, J. M., & Crawford, K. (2019). *Dirty data, bad predictions*. New York University Law Review Online, 94, 15–55.
-- Page, M. J., et al. (2021). *The PRISMA 2020 statement*. BMJ, 372, n71. https://doi.org/10.1136/bmj.n71
-
-Estas publicaciones constituyen referencias iniciales; no equivalen al conjunto final de estudios incluidos.
-
-## Próximo paso
-
-Ejecutar las búsquedas, conservar las exportaciones originales, completar las bitácoras y construir el flujo PRISMA y la síntesis final únicamente a partir de evidencia trazable.
+The script regenerates the frozen-result and screening files and prints all PRISMA counts.

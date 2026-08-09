@@ -1,246 +1,213 @@
-# Revisión sistemática de la literatura (RSL)
+# Systematic Literature Review (SLR)
 
-## Aprendizaje automático y análisis geoespacial para la predicción territorial del riesgo delictivo urbano
+## Machine Learning and Geospatial Analysis for Territorial Urban-Crime Risk Prediction
 
-**Autor:** Enrique Lee Huamani Uriarte
+**Author:** Enrique Lee Huamani Uriarte
 
-**Programa:** Doctorado
+**Program:** Doctoral studies
 
-**Ámbito de aplicación:** distrito de Comas, Lima Metropolitana, Perú
+**Application setting:** Comas District, Metropolitan Lima, Peru
 
-**Versión:** protocolo RSL 1.0 — agosto de 2026
-**Guía de reporte:** PRISMA 2020
+**Version:** SLR 1.1 — August 2026
 
-> **Estado de la evidencia.** El 9 de agosto de 2026 se ejecutó una RSL rápida reproducible en OpenAlex y Crossref: 100 registros identificados, 97 únicos cribados, 38 informes evaluados y 23 estudios empíricos incluidos. Las bases institucionales Scopus, Web of Science, IEEE Xplore, ACM Digital Library y SciELO permanecen pendientes para ampliar la cobertura.
+**Reporting guideline:** PRISMA 2020
 
-## Resumen
+> **Evidence status.** A reproducible rapid review was executed on August 9, 2026, using OpenAlex and Crossref: 100 records were identified, 97 unique records were screened, 38 reports were assessed, and 23 empirical studies were included. Scopus, Web of Science, IEEE Xplore, ACM Digital Library, and SciELO remain pending as an institutional-access extension.
 
-La concentración espacial y temporal de los delitos ha motivado el desarrollo de métodos estadísticos, geoespaciales y de aprendizaje automático para apoyar la gestión preventiva. Sin embargo, su desempeño depende de la calidad de los registros, la unidad territorial, el horizonte de predicción, las líneas base y la validación empleada. Además, los registros de denuncias reflejan tanto la ocurrencia de hechos como la propensión a denunciar y las prácticas institucionales. El objetivo de esta RSL es identificar y sintetizar métodos, fuentes de datos, estrategias de validación, métricas, mecanismos de explicabilidad y salvaguardas éticas utilizados en la predicción agregada del riesgo delictivo urbano, con énfasis en evidencia latinoamericana y contextos comparables con Comas. Se seguirá PRISMA 2020; se consultarán Scopus, Web of Science, IEEE Xplore, ACM Digital Library y SciELO, con búsqueda complementaria en Google Scholar. La síntesis preliminar indica la necesidad de comparar modelos complejos con líneas base simples, preservar el orden temporal, evaluar transferencia espacial, reportar calibración e incertidumbre y controlar riesgos de sesgo y retroalimentación. Estos resultados deberán confirmarse mediante la búsqueda y matriz de evidencia definitivas.
+## Abstract
 
-**Palabras clave:** delincuencia urbana; predicción del delito; aprendizaje automático; análisis geoespacial; riesgo territorial; ciudades inteligentes; PRISMA.
+Spatial and temporal concentrations of crime have motivated statistical, geospatial, and machine-learning methods intended to support preventive planning. Their apparent performance, however, depends on data quality, territorial scale, forecast horizon, baseline selection, and validation design. Complaint and police records also reflect reporting behavior and institutional practices in addition to underlying events. This review identifies methods, data sources, validation strategies, performance measures, explainability mechanisms, and ethical safeguards used in aggregated urban-crime prediction, with attention to evidence relevant to Latin America and Comas. A PRISMA 2020-informed rapid review searched OpenAlex and Crossref for publications from 2008 through August 9, 2026. Of 100 records, 23 empirical studies were included. The evidence supports the predictive relevance of crime history, spatial relationships, urban context, and mobility, but reveals limited attention to calibration, uncertainty, external validity, reproducibility, and territorial fairness. The Comas study should compare complex models with prevalence, persistence, and historical-hotspot baselines; preserve temporal order; test spatial transfer; report calibration and uncertainty; and restrict outputs to aggregated decision support under human oversight.
 
-## 1. Introducción
+**Keywords:** urban crime; crime forecasting; machine learning; geospatial analysis; territorial risk; smart cities; PRISMA.
 
-La delincuencia urbana presenta concentración espacial, recurrencia temporal y asociación con características del entorno. Estas regularidades permiten formular modelos que estiman el riesgo del siguiente periodo para unidades territoriales agregadas. Tales modelos pueden apoyar la priorización preventiva, pero no deben interpretarse como predicciones de personas, culpabilidad o causalidad.
+## 1. Introduction
 
-El problema científico no consiste únicamente en alcanzar una métrica elevada. Un modelo útil debe demostrar que mejora líneas base razonables, que generaliza a periodos futuros y territorios no observados, que está calibrado y que sus errores no se concentran injustificadamente en determinados sectores. En Comas, además, se requiere evidencia local o regional que justifique las decisiones sobre datos, granularidad, validación y gobernanza.
+Urban crime displays spatial concentration, temporal recurrence, and associations with characteristics of the built and social environment. These patterns make it possible to formulate models that estimate next-period risk for aggregated territorial units. Such estimates may support preventive planning, but they must not be interpreted as predictions of individual behavior, guilt, or causality.
 
-Esta RSL organiza el conocimiento relevante para el proyecto doctoral «Desarrollo y validación de un modelo de predicción del riesgo delictivo urbano basado en aprendizaje automático y análisis geoespacial para la gestión preventiva en Comas, Lima Metropolitana».
+A useful model must do more than achieve a high headline metric. It should improve upon reasonable baselines, generalize to future periods and unseen territories, provide calibrated estimates, and avoid systematically concentrating error or intervention in particular communities. Evidence from settings comparable to Comas is also necessary to justify choices concerning data, spatial granularity, validation, and governance.
 
-## 2. Objetivos y preguntas de revisión
+This review supports the doctoral project entitled “Development and Validation of an Urban Crime Risk Prediction Model Based on Machine Learning and Geospatial Analysis for Preventive Management in Comas, Metropolitan Lima.”
 
-### 2.1 Objetivo general
+## 2. Objectives and review questions
 
-Identificar, evaluar y sintetizar la evidencia sobre métodos de aprendizaje automático y análisis geoespacial utilizados para predecir riesgo delictivo urbano agregado, considerando desempeño, validación, reproducibilidad, explicabilidad, sesgos y aplicabilidad a Comas.
+### 2.1 General objective
 
-### 2.2 Objetivos específicos
+To identify, appraise, and synthesize evidence on machine-learning and geospatial methods used to predict aggregated urban-crime risk, considering performance, validation, reproducibility, explainability, bias, and applicability to Comas.
 
-1. Caracterizar las fuentes de datos, delitos, unidades espaciales, unidades temporales y horizontes de predicción.
-2. Comparar algoritmos, ingeniería de variables y líneas base utilizadas.
-3. Examinar las estrategias de validación temporal, espacial y externa.
-4. Identificar las métricas de discriminación, calibración, utilidad e incertidumbre reportadas.
-5. Analizar transparencia, reproducibilidad, privacidad, equidad y riesgos de retroalimentación.
-6. Determinar brechas de evidencia para Perú, Lima Metropolitana y Comas.
+### 2.2 Specific objectives
 
-### 2.3 Pregunta principal
+1. Characterize data sources, crime types, spatial units, temporal units, and forecast horizons.
+2. Compare algorithms, feature engineering, and baseline models.
+3. Examine temporal, spatial, and external-validation strategies.
+4. Identify discrimination, calibration, utility, and uncertainty measures.
+5. Analyze transparency, reproducibility, privacy, fairness, and feedback-loop risks.
+6. Determine evidence gaps for Peru, Metropolitan Lima, and Comas.
 
-¿Qué métodos, fuentes de datos, estrategias de validación y salvaguardas se han utilizado para predecir el riesgo agregado de delincuencia urbana mediante aprendizaje automático y análisis geoespacial, y qué evidencia existe en contextos latinoamericanos comparables con Comas?
+### 2.3 Main review question
 
-### 2.4 Preguntas secundarias
+Which methods, data sources, validation strategies, and safeguards have been used to predict aggregated urban-crime risk through machine learning and geospatial analysis, and what evidence exists in Latin American settings comparable to Comas?
 
-- **RQ1:** ¿Qué tipos de datos y escalas espaciotemporales se utilizan?
-- **RQ2:** ¿Qué modelos y líneas base presentan los estudios?
-- **RQ3:** ¿Cómo se evita la fuga de información y se evalúa la generalización futura y territorial?
-- **RQ4:** ¿Qué métricas, métodos de calibración y estimaciones de incertidumbre se reportan?
-- **RQ5:** ¿Qué medidas de explicabilidad, privacidad, equidad y supervisión humana se incorporan?
-- **RQ6:** ¿Qué limitaciones impiden transferir la evidencia disponible al contexto de Comas?
+### 2.4 Secondary questions
 
-## 3. Metodología
+- **RQ1:** Which data sources and spatiotemporal scales are used?
+- **RQ2:** Which models and baselines are compared?
+- **RQ3:** How do studies prevent information leakage and assess future and territorial generalization?
+- **RQ4:** Which metrics, calibration methods, and uncertainty estimates are reported?
+- **RQ5:** Which explainability, privacy, fairness, and human-oversight measures are included?
+- **RQ6:** Which limitations constrain transfer to Comas?
 
-### 3.1 Diseño y estándar
+## 3. Methods
 
-Se realizará una revisión sistemática con síntesis narrativa y tabular, informada por PRISMA 2020. Debido a la heterogeneidad esperada en delitos, escalas, horizontes y métricas, no se presupone un metaanálisis. Su viabilidad se evaluará después de la extracción.
+### 3.1 Design and reporting standard
 
-### 3.2 Marco PICOC adaptado
+This is a systematic rapid review with narrative and tabular synthesis, informed by PRISMA 2020. A meta-analysis was not planned because substantial heterogeneity was expected in outcomes, crime types, spatial units, forecast horizons, and metrics.
 
-| Elemento | Definición operacional |
+### 3.2 Adapted PICOC framework
+
+| Element | Operational definition |
 |---|---|
-| Población/problema | Delitos o denuncias agregados en espacios urbanos. |
-| Intervención | Modelos estadísticos, aprendizaje automático o aprendizaje profundo con componentes espaciales o espaciotemporales. |
-| Comparación | Persistencia, prevalencia, promedio histórico, hotspot histórico u otros modelos. |
-| Resultados | Desempeño predictivo, calibración, utilidad, generalización, explicabilidad, equidad y reproducibilidad. |
-| Contexto | Ciudades, distritos, sectores, cuadrículas u otras unidades territoriales; prioridad analítica para América Latina. |
+| Population/problem | Crime events or complaints aggregated within urban spaces. |
+| Intervention | Statistical prediction, machine learning, deep learning, or spatiotemporal models. |
+| Comparison | Prevalence, persistence, historical averages, historical hotspots, or alternative models. |
+| Outcomes | Predictive performance, calibration, utility, generalization, explainability, fairness, and reproducibility. |
+| Context | Cities, districts, sectors, grids, or other territorial units, with priority for Latin American evidence. |
 
-### 3.3 Fuentes de información
+### 3.3 Information sources and search date
 
-Se consultarán Scopus, Web of Science Core Collection, IEEE Xplore, ACM Digital Library y SciELO. Google Scholar y repositorios oficiales se utilizarán como búsqueda complementaria. También se revisarán las referencias de los artículos incluidos. La fecha exacta, filtros, consulta y cantidad exportada de cada fuente se registrarán en `search_log.csv`.
+OpenAlex and Crossref were searched on August 9, 2026. The first 50 relevance-ranked records from each source were exported and preserved. Scopus, Web of Science, IEEE Xplore, ACM Digital Library, and SciELO are planned for a subsequent institutional-access extension.
 
-### 3.4 Periodo e idiomas
+### 3.4 Search strategy
 
-- Periodo de publicación: enero de 2008 hasta la fecha final de búsqueda.
-- Idiomas: español, inglés y portugués.
-- Tipos documentales: artículos, trabajos completos de conferencia, revisiones metodológicas pertinentes e informes técnicos o de gobernanza con autoría institucional identificable.
+The executed search string was:
 
-### 3.5 Estrategia de búsqueda
+```text
+spatiotemporal crime prediction machine learning urban
+```
 
-Consulta conceptual base:
+The date filter was January 1, 2008, through August 9, 2026. Crossref was additionally restricted to journal articles. Exact endpoints, dates, filters, totals, and exports are documented in `search_log.csv` and `run_literature_search.ps1`.
+
+A broader institutional search should adapt the following conceptual query to each database:
 
 ```text
 ("crime prediction" OR "crime forecasting" OR "crime risk" OR
- "predictive policing" OR "urban safety" OR "predicción del delito" OR
- "riesgo delictivo")
-AND
-("machine learning" OR "deep learning" OR "statistical learning" OR
- "aprendizaje automático")
-AND
-(geospatial OR spatial OR spatiotemporal OR GIS OR hotspot OR
- geoespacial OR espacial OR espaciotemporal)
-AND
-(urban OR city OR district OR municipal OR urbano OR ciudad OR distrito)
+ "predictive policing" OR "urban safety")
+AND ("machine learning" OR "deep learning" OR "statistical learning")
+AND (geospatial OR spatial OR spatiotemporal OR GIS OR hotspot)
+AND (urban OR city OR district OR municipal)
 ```
 
-La cadena se adaptará a la sintaxis de cada base sin modificar sus conceptos centrales. Para recuperar evidencia regional se realizará una consulta complementaria con `Peru OR Perú OR Lima OR "Latin America" OR Latinoamérica`. No se presentará una cadena como ejecutada hasta registrar la fecha y el resultado real.
+### 3.5 Eligibility criteria
 
-### 3.6 Criterios de inclusión
+Studies were eligible when they: (1) examined prediction or forecasting of aggregated urban crime or crime risk; (2) used statistical prediction, machine learning, deep learning, or spatiotemporal analysis; (3) described an empirical evaluation; (4) provided sufficient information to identify the target or territorial context; and (5) were published between 2008 and the search date.
 
-1. Estudio empírico sobre predicción, pronóstico o estimación futura de delito o riesgo delictivo urbano agregado.
-2. Uso de métodos estadísticos predictivos, aprendizaje automático, aprendizaje profundo o análisis espaciotemporal.
-3. Evaluación fuera de muestra o descripción suficiente para determinar el diseño de validación.
-4. Identificación de fuente de datos, unidad espacial, unidad temporal u horizonte de predicción.
-5. Texto completo disponible en español, inglés o portugués.
+Studies were excluded when they focused on individual recidivism, guilt, or offender profiling; were unrelated to urban territorial prediction; were secondary reviews without new empirical evidence; lacked verifiable predictive evaluation; or could not be retrieved through available open-access routes.
 
-### 3.7 Criterios de exclusión
+### 3.6 Selection process
 
-1. Predicción individual de reincidencia, autoría, culpabilidad o comportamiento personal.
-2. Estudios exclusivamente descriptivos sin componente predictivo, salvo revisiones o documentos de gobernanza directamente relevantes.
-3. Contextos no urbanos sin transferibilidad justificada.
-4. Resúmenes, presentaciones, editoriales, noticias o textos sin método evaluable.
-5. Duplicados o versiones preliminares cuando exista una versión final más completa.
-6. Textos cuyo documento completo no pueda recuperarse después de intentos documentados.
+The two exports contained 100 records. Deduplication by DOI or normalized title removed three duplicates. A documented title rule screened the 97 unique records and excluded 49 records outside the conceptual scope. Forty-eight reports were sought, ten could not be retrieved through open access, and 38 were assessed. Fifteen were excluded because they were secondary reviews, had insufficient scope or document quality, or lacked verifiable predictive validation. Twenty-three empirical studies were included.
 
-### 3.8 Gestión y selección de registros
+The rule and record-level decisions are preserved in `run_literature_search.ps1` and `screening_log.csv`. Initial screening was automation-assisted and subsequently checked against the stated eligibility criteria.
 
-Los resultados se exportarán en RIS, BibTeX o CSV y se conservarán sin modificación. La deduplicación combinará DOI, título normalizado, autores y año. El cribado tendrá dos etapas: título/resumen y texto completo. Cada exclusión a texto completo tendrá una razón única y documentada en `screening_log.csv`.
+### 3.7 Data extraction and quality appraisal
 
-Se recomienda que dos revisores evalúen independientemente los registros y resuelvan discrepancias por consenso. Si el trabajo debe realizarlo un solo investigador, se declarará esta limitación y, cuando sea posible, un segundo revisor verificará una muestra. No se afirmará revisión doble si no ocurrió.
+The evidence matrix records citation, country, data source, crime type, spatial unit, target, model, validation, metrics, main findings, and limitations. `NR` means not reported in the accessible metadata or extracted evidence; it does not mean the feature was absent.
 
-### 3.9 Extracción de datos
+Studies were appraised across representativeness, temporal ordering, comparators, validation, metrics, generalization, transparency, and impact/fairness. No single total quality score was used because it could conceal a critical weakness such as information leakage.
 
-Se utilizará `evidence_extraction.csv` para registrar: referencia, país, periodo, fuente de datos, tipo de delito, escalas espacial y temporal, objetivo, predictores, modelos, línea base, partición, control de fuga, métricas, calibración, validación externa, explicabilidad, equidad, hallazgo principal y limitaciones.
+## 4. PRISMA 2020 results
 
-### 3.10 Evaluación de calidad y riesgo de sesgo
+![Completed PRISMA 2020 flow diagram](prisma_flow_diagram.svg)
 
-Cada estudio empírico recibirá una valoración `Sí`, `Parcial`, `No` o `No aplica` en los siguientes dominios:
-
-| Dominio | Pregunta de evaluación |
-|---|---|
-| Representatividad | ¿La procedencia, cobertura y limitaciones de los datos están descritas? |
-| Temporalidad | ¿Los predictores están disponibles antes del resultado y se evita fuga de información? |
-| Comparadores | ¿Se incluyen líneas base pertinentes y se comparan en las mismas particiones? |
-| Validación | ¿La evaluación respeta tiempo/espacio y utiliza datos fuera de muestra? |
-| Métricas | ¿Las métricas son apropiadas y se reportan calibración o incertidumbre? |
-| Generalización | ¿Se discute transferencia temporal, espacial o externa? |
-| Transparencia | ¿Datos, código, parámetros o transformaciones están suficientemente documentados? |
-| Impacto y equidad | ¿Se analizan sesgo, privacidad, retroalimentación y límites de uso? |
-
-No se calculará una puntuación total que oculte fallas críticas. Los dominios se reportarán individualmente.
-
-### 3.11 Síntesis
-
-Los estudios se agruparán por enfoque de modelado, escala espacial, horizonte temporal, fuente de datos y región. Se compararán resultados solo cuando las definiciones y particiones sean compatibles. La síntesis distinguirá desempeño aparente, validación temporal, transferencia espacial y validación externa. Se realizará un análisis específico de estudios latinoamericanos.
-
-## 4. Flujo PRISMA 2020
-
-El diagrama proporcionado se completó con los conteos auditables de la búsqueda ejecutada. El gráfico está en `prisma_flow_diagram.svg` y su detalle en `prisma_2020_flow.md`.
-
-| Etapa | Conteo |
+| Stage | n |
 |---|---:|
-| Registros identificados en OpenAlex y Crossref | 100 |
-| Duplicados eliminados | 3 |
-| Registros cribados por título | 97 |
-| Registros excluidos mediante regla reproducible | 49 |
-| Informes buscados para recuperación | 48 |
-| Informes no recuperados en acceso abierto | 10 |
-| Informes evaluados | 38 |
-| Informes excluidos por elegibilidad/calidad | 15 |
-| Estudios incluidos en la revisión rápida | 23 |
+| Records identified | 100 |
+| Duplicates removed | 3 |
+| Unique records screened | 97 |
+| Records excluded by title rule | 49 |
+| Reports sought | 48 |
+| Reports not retrieved | 10 |
+| Reports assessed | 38 |
+| Full-text reports excluded | 15 |
+| **Empirical studies included** | **23** |
 
-## 5. Síntesis exploratoria de literatura semilla
+The arithmetic and grouped exclusion reasons are reported in `prisma_2020_flow.md`.
 
-### 5.1 Concentración y predicción espaciotemporal
+## 5. Evidence synthesis
 
-Chainey, Tompson y Uhlig (2008) evaluaron la utilidad predictiva de técnicas de mapeo de puntos calientes y mostraron que no basta con visualizar concentraciones históricas: su valor debe comprobarse sobre eventos posteriores. Mohler et al. (2011) aplicaron procesos puntuales autoexcitados para representar el riesgo de repetición cercana, reforzando la importancia de la dependencia espacial y temporal.
+### 5.1 Data and spatial representation
 
-Para el proyecto de Comas, estos aportes justifican variables históricas rezagadas y análisis de concentración, pero también exigen comparar el aprendizaje automático con un hotspot histórico y con persistencia. Un mapa retrospectivo no equivale por sí mismo a un modelo prospectivo validado.
+Most studies rely on historical police or open municipal crime records. Common spatial representations include grids, neighborhoods, communities, and graphs connecting adjacent or functionally related areas. Several studies enrich crime history with social factors, mobile-phone mobility, social-media signals, street imagery, building footprints, or urban topology.
 
-### 5.2 Evaluación y utilidad operativa
+This diversity supports multisource modeling but creates comparability problems. Crime counts, rates, binary hotspots, and multiclass outcomes answer different questions. Results obtained at one grid size or forecast horizon cannot be transferred directly to another setting.
 
-Perry et al. (2013) sitúan el pronóstico del delito como una herramienta dentro de un proceso de decisión más amplio. La predicción no determina automáticamente la intervención ni demuestra su eficacia. En consecuencia, la evaluación del proyecto debe separar desempeño del modelo, utilidad para la planificación y efectos de cualquier intervención futura.
+### 5.2 Modeling approaches
 
-### 5.3 Calidad de datos, sesgo y retroalimentación
+The evidence includes conventional classifiers, regression, clustering, stacking ensembles, convolutional neural networks, time-delay networks, LSTM architectures, graph convolutional networks, hypergraph networks, multimodal learning, transfer learning, and agent-based simulation. Recent studies emphasize joint spatial-temporal representation and relationships among crime types.
 
-Lum e Isaac (2016) y Richardson, Schultz y Crawford (2019) advierten que los datos policiales pueden reproducir patrones de vigilancia y denuncia. Si el despliegue institucional se concentra donde el sistema ya observa más, los nuevos datos pueden reforzar esa concentración. Meijer y Wessels (2019) sintetizan beneficios potenciales y riesgos de gobernanza de la policía predictiva.
+Complex models may capture nonlinear dependencies, but their incremental value must be assessed against persistence and historical-hotspot baselines. A model that only outperforms another complex algorithm does not establish operational value.
 
-Estas advertencias son centrales para Comas: las denuncias no deben interpretarse como medida completa del delito; se deben documentar cobertura, cambios administrativos y subregistro; y el producto debe limitarse a riesgo territorial agregado bajo supervisión humana.
+### 5.3 Validation and metrics
 
-### 5.4 Transparencia del proceso de revisión
+The studies commonly report accuracy, precision, recall, F1, or prediction error. Some compare multiple datasets or cities, but explicit spatial transfer, temporal holdout, calibration, and uncertainty are less consistently documented. Perfect or near-perfect classification results warrant special scrutiny for leakage, imbalance, target construction, and random splitting.
 
-Page et al. (2021) establecen PRISMA 2020 como guía para transparentar identificación, selección, exclusión e inclusión. Aplicarlo significa conservar búsquedas exactas, exportaciones, decisiones por registro y razones de exclusión. Un diagrama con cifras no verificables no cumple esa finalidad.
+For Comas, the primary evaluation should preserve temporal order, hold out a final period, and test grouped spatial transfer to unseen territories. PR-AUC and Brier score should accompany ROC-AUC, precision, recall, F1, calibration curves, and uncertainty intervals.
 
-## 6. Brechas preliminares y aporte esperado
+### 5.4 Mobility and urban context
 
-La búsqueda sistemática deberá confirmar, refinar o rechazar las siguientes brechas:
+The included mult-city mobility study reports F1 improvements of approximately 2%–7% when human-mobility flows are added to historical crime features, depending on city and crime type. Other studies indicate that dynamic population denominators, social factors, imagery, and built-form representations may contribute contextual information.
 
-1. Evidencia limitada de validación intradistrital en Perú y específicamente en Comas.
-2. Uso de particiones aleatorias que pueden sobreestimar el desempeño al ignorar tiempo y espacio.
-3. Comparación insuficiente con prevalencia, persistencia y hotspot histórico.
-4. Poca atención a calibración, intervalos de incertidumbre y utilidad operativa.
-5. Documentación incompleta de procedencia, transformaciones y disponibilidad temporal de variables.
-6. Evaluación limitada de disparidades territoriales, privacidad y ciclos de retroalimentación.
+These sources also introduce risks: mobile-device coverage and social-media participation are unequal, imagery may be outdated, and built-environment associations are predictive rather than causal.
 
-El aporte propuesto no presupone que un algoritmo complejo será superior. Consiste en evaluar de forma auditable si la integración espaciotemporal mejora la predicción y calibración frente a líneas base simples en Comas, bajo controles explícitos de privacidad, equidad y uso. Un resultado nulo o la superioridad de un modelo simple también constituirán evidencia útil.
+### 5.5 Bias, ethics, and governance
 
-## 7. Implicaciones para el protocolo doctoral
+Complaint data combine underlying events, willingness and ability to report, and institutional recording practices. Models trained on these records can reproduce unequal observation or enforcement patterns. Few included technical studies provide comprehensive calibration, fairness, feedback-loop, or human-oversight evaluation.
 
-La síntesis preliminar conduce a las siguientes decisiones:
+The proposed system must therefore operate only at an aggregated territorial level, exclude individual profiling, communicate uncertainty, document non-use criteria, audit territorial errors, and require human review. Predicted risk must not be treated as proof that a community or person is inherently dangerous.
 
-1. Unidad de análisis agregada territorio-mes; nunca predicción individual.
-2. Predictores disponibles hasta el cierre del mes anterior al resultado.
-3. Ventanas temporales expansivas y periodo final de prueba intacto.
-4. Validación espacial agrupada en territorios no utilizados para entrenar.
-5. Líneas base de prevalencia, persistencia y hotspot histórico.
-6. PR-AUC, Brier, calibración, errores territoriales e intervalos, además de ROC-AUC.
-7. Auditoría de procedencia, subregistro, cobertura, fuga y disparidades.
-8. Resultados como apoyo a decisiones con supervisión, límites de uso y revisión ética.
+## 6. Research gaps
 
-## 8. Limitaciones de esta versión
+1. No included study provides direct validation for Comas, and Peruvian evidence is scarce in the retrieved corpus.
+2. Random train-test splits may overestimate performance when time and space are ignored.
+3. Simple operational baselines are not consistently reported.
+4. Calibration, uncertainty, and decision utility receive less attention than classification metrics.
+5. Provenance, temporal availability, and transformation of predictors are often insufficiently documented.
+6. Territorial fairness, privacy, and feedback effects are rarely evaluated together.
+7. External transfer across cities or institutional systems remains limited.
 
-La versión actual no permite afirmar exhaustividad, estimar el número de estudios ni cuantificar tendencias. La literatura semilla fue seleccionada por relevancia conceptual y no mediante el proceso completo de búsqueda y cribado. La síntesis puede cambiar después de ejecutar el protocolo. Estas limitaciones deben indicarse durante la presentación académica.
+## 7. Implications for the doctoral study
 
-## 9. Conclusión provisional
+The review supports eight design commitments:
 
-La evidencia inicial respalda la viabilidad conceptual de pronósticos territoriales basados en dependencia espaciotemporal, pero no garantiza utilidad local. Para producir evidencia válida en Comas se requiere una RSL trazable y, posteriormente, validación temporal y espacial con datos autorizados. El desempeño debe interpretarse junto con calibración, incertidumbre, calidad de datos, equidad y gobernanza. La conclusión definitiva se redactará únicamente después de completar el flujo PRISMA y la matriz de extracción.
+1. Use an aggregated territory-month unit and never predict individuals.
+2. Restrict predictors to information available before the target month.
+3. Use expanding temporal windows and preserve a final untouched test period.
+4. Conduct grouped spatial validation on unseen territories.
+5. Compare with prevalence, persistence, and historical-hotspot baselines.
+6. Report calibration, Brier score, PR-AUC, territorial errors, and uncertainty intervals.
+7. Audit provenance, underreporting, coverage, leakage, and disparities.
+8. Treat outputs as decision support subject to human oversight and ethical review.
 
-## Referencias semilla
+## 8. Limitations
 
-Chainey, S., Tompson, L., & Uhlig, S. (2008). The utility of hotspot mapping for predicting spatial patterns of crime. *Security Journal, 21*, 4–28. https://doi.org/10.1057/palgrave.sj.8350066
+This review used two open scholarly sources and their first 50 relevance-ranked results. Ranking may omit relevant work, and ten candidate reports were not retrievable through the available open-access routes. Initial title screening used a documented rule. The evidence matrix includes `NR` where information was not established from accessible material. Database-specific searches through Scopus, Web of Science, IEEE Xplore, ACM Digital Library, and SciELO are needed before claiming a fully exhaustive SLR.
 
-Lum, K., & Isaac, W. (2016). To predict and serve? *Significance, 13*(5), 14–19. https://doi.org/10.1111/j.1740-9713.2016.00960.x
+## 9. Conclusion
 
-Meijer, A., & Wessels, M. (2019). Predictive policing: Review of benefits and drawbacks. *International Journal of Public Administration, 42*(12), 1031–1039. https://doi.org/10.1080/01900692.2019.1575664
+The evidence supports the conceptual feasibility of territorial urban-crime forecasting based on spatial-temporal dependence, mobility, and urban context, but it does not guarantee local utility in Comas. Valid local evidence requires temporal and spatial validation against simple baselines, together with calibration, uncertainty, data-quality assessment, fairness auditing, and governance safeguards. The project contribution should be an auditable test of whether multisource integration improves prediction—not an assumption that a complex algorithm must win.
 
-Mohler, G. O., Short, M. B., Brantingham, P. J., Schoenberg, F. P., & Tita, G. E. (2011). Self-exciting point process modeling of crime. *Journal of the American Statistical Association, 106*(493), 100–108. https://doi.org/10.1198/jasa.2011.ap09546
+## Key references
 
-Page, M. J., et al. (2021). The PRISMA 2020 statement: An updated guideline for reporting systematic reviews. *BMJ, 372*, n71. https://doi.org/10.1136/bmj.n71
+- Hu, T., et al. (2018). Urban crime prediction based on a spatio-temporal Bayesian model. *PLOS ONE, 13*(10), e0206215. https://doi.org/10.1371/journal.pone.0206215
+- Kadar, C., et al. (2022). Enhancing short-term crime prediction with human mobility flows and deep learning architectures. *EPJ Data Science, 11*. https://doi.org/10.1140/epjds/s13688-022-00366-2
+- Xia, L., et al. (2021). Spatial-temporal sequential hypergraph network for crime prediction with dynamic multiplex relation learning. *IJCAI 2021*, 1631–1637. https://doi.org/10.24963/ijcai.2021/225
+- Zhao, X., et al. (2022). Multi-Type Urban Crime Prediction. *AAAI, 36*(4), 4388–4396. https://doi.org/10.1609/aaai.v36i4.20360
+- Page, M. J., et al. (2021). The PRISMA 2020 statement. *BMJ, 372*, n71. https://doi.org/10.1136/bmj.n71
 
-Perry, W. L., McInnis, B., Price, C. C., Smith, S. C., & Hollywood, J. S. (2013). *Predictive policing: The role of crime forecasting in law enforcement operations*. RAND Corporation. https://doi.org/10.7249/RR233
+## Traceability files
 
-Richardson, R., Schultz, J. M., & Crawford, K. (2019). Dirty data, bad predictions: How civil rights violations impact police data, predictive policing systems, and justice. *New York University Law Review Online, 94*, 15–55.
-
-## Anexo A. Archivos de trazabilidad
-
-- `search_log.csv`: búsqueda exacta y exportaciones por base.
-- `screening_log.csv`: decisiones por registro y razones de exclusión.
-- `evidence_extraction.csv`: características y resultados de cada estudio.
-- `gap_analysis.md`: brechas sujetas a confirmación.
-- `prisma_2020_flow.md`: conteos y controles aritméticos del diagrama PRISMA.
+- `search_log.csv`: executed queries and source totals.
+- `search_results_2026-08-09.csv`: frozen 100-record export.
+- `screening_log.csv`: record-level decisions and reasons.
+- `evidence_extraction.csv`: 23-study evidence matrix.
+- `prisma_2020_flow.md`: PRISMA counts and arithmetic.
+- `run_literature_search.ps1`: reproducible search and screening logic.
