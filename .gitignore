@@ -17,12 +17,8 @@ Thumbs.db
 
 # Local secrets
 .env
-.dvc/config.local
 
-# DVC local cache
-.dvc/cache/
-
-# MLflow local tracking store (keep curated summaries in docs/)
+# Legacy local experiment-tracking output
 mlruns/
 05_pipeline/mlruns/
 

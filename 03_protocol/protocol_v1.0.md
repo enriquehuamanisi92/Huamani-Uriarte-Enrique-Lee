@@ -1,129 +1,116 @@
-# Research Protocol v1.0
+# Research Protocol v1.0 — Updated Evidence Status
 
 **Title:** Development and Validation of an Urban Crime Risk Prediction Model Based on Machine Learning and Geospatial Analysis for Preventive Management in Comas, Metropolitan Lima
 
-**Version:** 1.0 — August 2026
+**Version:** 1.0, amended August 9, 2026
 
 **Author:** Enrique Lee Huamani Uriarte
 
 ## 1. Problem statement
 
-Police complaints, census indicators, and urban-environment data describe complementary dimensions of crime risk, but they are usually fragmented and have different spatial and temporal resolutions. Reliance on retrospective reporting limits anticipatory assessment of territorial concentrations. The scientific and technological problem is the absence of a locally validated, reproducible, and responsible model that estimates next-period risk without equating recorded complaints with total crime or interpreting predictive associations as causal explanations.
+Police reports, population exposure, socioeconomic conditions, and the urban environment describe complementary dimensions of recorded crime risk, but they are commonly fragmented and available at different spatial and temporal resolutions. The research problem is the absence of a locally validated, reproducible, and responsible next-period forecasting model for Comas that demonstrates incremental value over simple baselines without equating registered reports with all crime or predictive associations with causality.
 
-The study is limited to territorially aggregated property crime. It will not predict individuals, recidivism, guilt, or personal behavior. The exact spatial unit will be selected after assessing coverage, geocoding error, and re-identification risk.
+The repository now contains a completed district-level benchmark using public Ministry of the Interior/SIDPOL aggregates. It does not yet contain authorized intradistrict units, coordinates, census linkage, or municipal context required for the full geospatial objective.
 
-## 2. Rationale
+## 2. Research stages
 
-- **Scientific:** assess whether spatiotemporal integration improves generalization over simple baselines.
-- **Technological:** produce a versioned pipeline and laboratory-validated prototype, subject to the applicable TRL assessment.
-- **Practical:** generate aggregated estimates that may support preventive planning under human oversight.
-- **Social and ethical:** incorporate use limitations, privacy, disparity auditing, and uncertainty communication by design.
+| Stage | Status | Scope |
+|---|---|---|
+| Public district-level benchmark | Completed | Monthly theft-plus-robbery reports for Comas, January 2018–May 2026. |
+| Rapid systematic literature review | Completed with stated limits | OpenAlex and Crossref; 23 empirical studies included. |
+| Intradistrict geospatial study | Pending authorization and suitable data | Territory-month modeling, spatial transfer, contextual predictors, and aggregate maps. |
+| Institutional pilot or deployment | Not authorized | Requires separate ethics, legal, performance, and governance review. |
 
-## 3. Questions, objectives, and hypotheses
+## 3. Research questions
 
-### 3.1 General research question
+### 3.1 Implemented benchmark question
 
-To what extent can a model integrating crime history, socioeconomic variables, and geospatial characteristics predict monthly property-crime risk by territorial unit in Comas, compared with historical baselines, under temporal and spatial validation?
+Can lagged, seasonal, trend, and machine-learning models improve next-month prediction of aggregated theft and robbery reports in Comas compared with persistence and seasonal-naive baselines under a final temporal holdout?
 
-### 3.2 General objective
+### 3.2 Full doctoral question
 
-Develop and validate the integrated model, evaluate discrimination, calibration, utility, and territorial stability, and document safeguards required for preventive decision support.
+To what extent can authorized crime history, socioeconomic variables, and geospatial characteristics improve monthly property-crime prediction across safe territorial units in Comas, compared with historical baselines, under temporal and spatial validation?
 
-### 3.3 Specific objectives
+## 4. Objectives
 
-1. Integrate and document a territory-month dataset with quality controls and provenance.
-2. Describe distribution, trend, seasonality, and spatial autocorrelation.
-3. Compare supervised models with prevalence and historical-persistence baselines.
-4. Evaluate generalization using rolling temporal windows and spatial splits.
-5. Analyze calibration, errors, interpretability, and territorial disparities.
-6. Produce aggregated maps, a model card, and a responsible-use protocol.
+### 4.1 Completed objectives
 
-### 3.4 Hypotheses
+1. Acquire and document an official public aggregate dataset with source, license, version, and hash.
+2. Construct a complete district-month theft and robbery series for Comas.
+3. Engineer leakage-controlled temporal and seasonal predictors.
+4. Compare two transparent baselines with four regression models.
+5. Evaluate 16 future forecast months and retain unfavorable results.
+6. Publish code, tests, forecasts, figures, notebook outputs, model card, and governance documentation.
 
-**H1:** The integrated model will outperform the historical baseline on PR-AUC and Brier score in future periods.
+### 4.2 Pending full-study objectives
 
-**H2:** Recent crime-history variables will add predictive information beyond static territorial variables.
+1. Obtain lawful access to appropriate intradistrict aggregate units and contextual predictors.
+2. Assess data quality, geocoding, spatial support, population exposure, and disclosure risk.
+3. Evaluate temporal and grouped spatial transfer.
+4. Report calibration or count-forecast uncertainty, interpretability, and territorial error disparities.
+5. Determine whether evidence supports an aggregate research prototype; deployment is not presumed.
 
-**H3:** Performance and calibration will vary across sectors; these differences must be quantified before any institutional use is considered.
+## 5. Hypotheses and current findings
 
-H1 and H2 are predictive, not causal, hypotheses. H3 is a heterogeneity hypothesis and safety criterion.
+**H1:** A trained model will outperform persistence on future monthly observations.
 
-## 4. Design
+**Finding:** Not supported in the implemented benchmark. Persistence achieved MAE 37.19, lower than ridge regression (43.11), random forest (46.99), linear regression (47.11), and histogram gradient boosting (56.14).
 
-This is a quantitative applied study for predictive-model development and validation using repeated territory-month observations. The proposed period is 2018-2025, conditional on authorization and data quality. The current phase is a synthetic proof of concept. The real-data phase will be retrospective and non-interventional.
+**H2:** Recent crime history contains useful next-month predictive information.
 
-## 5. Population, unit, and eligibility
+**Finding:** Supported at benchmark level because persistence obtained positive test R² of 0.141 and outperformed the 12-month seasonal comparator. This is predictive, not causal, evidence.
 
-- **Target population:** territorial units in Comas observed monthly.
-- **Unit of analysis:** territory-month.
-- **Inclusion:** property-crime complaints within Comas with valid dates, harmonizable classification, and geocoding compatible with safe aggregation.
-- **Exclusion:** confirmed duplicates, records outside the scope or period, impossible coordinates, and observations that cannot be aggregated safely.
-- **Sample:** census of eligible records. Counts of records, territories, months, and events will be reported after authorization; no sample size is fabricated in advance.
+**H3:** Contextual and geospatial integration improves transfer across territorial units.
 
-Data sufficiency will be assessed using event counts, prevalence, model complexity, and desired precision of performance estimates. If data are insufficient, model complexity will be reduced or the aggregation unit enlarged.
+**Finding:** Not tested. The public source has one district-month series and no intradistrict geometry.
 
-## 6. Data sources and governance
+## 6. Current data and study population
 
-1. Authorized SIDPOL records, pseudonymized before analytical access.
-2. INEI 2017 National Census data, explicitly documenting temporal mismatch.
-3. Official cartography and, only when licensing and quality permit, municipal infrastructure variables.
+- **Publisher:** Ministry of the Interior of Peru.
+- **Originating system:** SIDPOL.
+- **Geographic filter:** Comas UBIGEO `150110`.
+- **Source coverage:** January 2018–May 2026.
+- **Unit of analysis:** district-month.
+- **Outcome:** theft plus robbery reports in the following month.
+- **Series:** 101 months and 47,554 reports.
+- **Privacy:** public aggregate counts with no personal identifiers or point coordinates.
 
-Personal data will never be stored on GitHub. Linkage will occur in a controlled environment; the public repository will contain code, metadata, schemas, and synthetic data only.
+Future restricted records, linkage keys, exact coordinates, addresses, victims, complainants, or investigated persons must never be stored on GitHub.
 
-## 7. Outcome and predictors
+## 7. Implemented analysis
 
-The primary outcome will be the next-month count or population-adjusted rate of property-crime complaints. Secondary analyses may define risk levels using prespecified, justified thresholds. Every predictor must be available by the end of month t. Lags will be calculated within territorial units and audited for information leakage.
+1. Preserve the downloaded source and SHA-256 hash.
+2. Select Comas by UBIGEO and select theft and robbery categories.
+3. Pivot to a complete monthly series.
+4. Construct current counts, 1/2/3/6/12-month lags, shifted 3/6-month rolling means, recent trend, time index, and cyclic month terms.
+5. Define the following month as the target.
+6. Train on feature months before January 2025.
+7. Evaluate forecasts from February 2025 through May 2026.
+8. Compare persistence, seasonal naive, linear regression, ridge regression, random forest, and histogram gradient boosting.
+9. Report MAE, RMSE, R², MAPE, month-level forecasts, and repeated-seed results.
 
-## 8. Analysis plan
+## 8. Bias, ethics, and responsible use
 
-1. Freeze the data dictionary, eligibility rules, and analysis plan.
-2. Assess duplicates, missingness, consistency, coverage, and geocoding error.
-3. Describe rates, trends, seasonality, and spatial autocorrelation using global and local Moran statistics where appropriate.
-4. Train prevalence and persistence baselines, regularized logistic regression, and tree-based models. More complex models will be used only when sample size and incremental value justify them.
-5. Use expanding-window temporal validation and preserve the final period as an untouched test set.
-6. Use grouped spatial validation to assess transfer to unseen territories.
-7. Tune hyperparameters and decision thresholds using training/validation data only.
-8. Report PR-AUC as the main discrimination metric under class imbalance, together with ROC-AUC, precision, recall, F1, Brier score, calibration curves, and bootstrap confidence intervals.
-9. Compare models on identical splits and report uncertainty rather than only the best point estimate.
-10. Examine permutation importance or SHAP values, temporal stability, and sector-specific errors.
+Registered police reports reflect occurrence, reporting behavior, access, classification, and institutional recording practices. The model must not be interpreted as measuring complete crime or inherent territorial danger. The current evidence does not authorize patrol allocation, enforcement, individual profiling, automated decisions, or public risk labeling.
 
-## 9. Bias control
+Any future restricted-data study requires a lawful basis, custodian authorization, applicable ethics review, data minimization, access control, disclosure review, and explicit human accountability.
 
-Complaint data reflect victimization, willingness and ability to report, and institutional practices. They will not be treated as a complete measure of crime. Administrative changes, missingness, coverage, and possible feedback loops will be documented. Sensitive personal variables and unjustified proxies will not be used. Territorial comparisons will include sample sizes and uncertainty and will not label communities as inherently dangerous.
+## 9. Reproducibility
 
-## 10. Ethics and data protection
+The repository versions the source manifest, data dictionary, exact processing code, parameters, seeds, tests, seed-level metrics, model comparison, month-level forecasts, figures, and an executed notebook. Exact reproduction uses the source-file hash recorded in the datasheet and manifest.
 
-Institutional authorization and applicable ethics review will be required before real data are used. Processing will comply with Peruvian Law No. 29733 and regulations in force at execution. Safeguards include minimization, role-based access, encryption, access logging, aggregation, a deletion schedule, and an incident-response procedure. Public outputs will undergo disclosure review and will not display individual points.
+## 10. Limitations
 
-## 11. Reproducibility
+The benchmark covers one district and 101 months; it includes pandemic disruption and temporal drift; it lacks monthly exposure and contextual predictors; and it cannot perform intradistrict spatial validation, fairness comparisons, external validation, causal inference, or intervention evaluation.
 
-Code, parameters, seeds, versions, hashes, and analytical decisions will be versioned. DVC will manage non-sensitive artifacts; MLflow will record experiments without real data or revealing paths. An independent clean-clone reproduction must generate the principal tables before study closure.
+## 11. TRL statement
 
-## 12. Limitations
+No TRL 4 claim is made from the district-level benchmark alone. A technology-readiness claim requires evidence against the applicable CONCYTEC definition, validation of integrated components in the specified environment, documented requirements, and independent verification.
 
-Expected limitations include underreporting, reporting bias, classification changes, census time mismatch, spatial dependence, temporal drift, geocoding quality, and limited transportability beyond Comas. A predictive design cannot identify causes or demonstrate that an intervention reduces crime.
+## 12. Amendments
 
-## 13. Outputs and TRL progression criteria
-
-- Controlled, documented analytical dataset.
-- Reproducible pipeline and automated tests.
-- Temporal-spatial validation report.
-- Model card, datasheet, bias audit, and ethics protocol.
-- Laboratory prototype of an aggregated risk map.
-
-TRL 4 remains a target and will be claimed only when there is verifiable evidence that components were validated in the environment defined by the applicable CONCYTEC directive.
-
-## 14. Summary timeline (24 months)
-
-| Phase | Months | Output |
-|---|---:|---|
-| Authorization, review, and protocol | 1-4 | Frozen protocol and permissions. |
-| Data integration and quality | 5-8 | Audited dataset and dictionary. |
-| Analysis and development | 9-14 | Baselines and candidate models. |
-| Validation and audits | 15-18 | Temporal, spatial, and bias reports. |
-| Prototype and evaluation | 19-21 | Aggregated map and model card. |
-| Writing and transfer | 22-24 | Thesis, article, and reproducible package. |
-
-## 15. Amendments
-
-Every change after protocol freezing will record its date, rationale, impact, and whether it occurred before or after test-set inspection. Non-prespecified analyses will be labeled exploratory.
+| Date | Amendment | Reason |
+|---|---|---|
+| 2026-08-09 | Replaced the earlier demonstration phase with an official public district-level SIDPOL benchmark. | A lawful public aggregate source covering Comas became available. |
+| 2026-08-09 | Recorded negative model-comparison result. | Persistence outperformed every trained ML model on the final holdout. |
+| 2026-08-09 | Separated completed district forecasting from pending intradistrict geospatial validation. | Prevent overstatement of spatial resolution and readiness. |

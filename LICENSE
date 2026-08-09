@@ -6,7 +6,9 @@ This work is licensed under the Creative Commons Attribution-NonCommercial
 4.0 International License. To view a copy of this license, visit:
 https://creativecommons.org/licenses/by-nc/4.0/
 
-This license applies to the public academic documentation and synthetic
-demonstration material in this repository. It does not grant rights to any
-future SIDPOL, police, municipal, census microdata, confidential records, or
-third-party datasets, which remain governed by their custodians and licenses.
+This license applies to original academic documentation, code, and figures
+created by the repository author. The included public MININTER/SIDPOL dataset
+remains governed by its source license, the Open Data Commons Attribution
+License, and must retain source attribution. This repository license does not
+grant rights to any future restricted police, municipal, census, geocoded,
+personal, confidential, or other third-party data.

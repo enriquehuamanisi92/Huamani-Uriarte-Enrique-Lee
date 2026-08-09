@@ -17,7 +17,7 @@ How accurately can a supervised Machine Learning model, enriched with geospatial
 | Criterion | What It Asks | Method 1 | Method 2 | Method 3 |
 |---|---|---:|---:|---:|
 | **E - Epistemological fit** | Does the method match the quantitative applied paradigm? | 5 | 4 | 2 |
-| **D - Data availability** | Can the required data be accessed or simulated at this stage? | 4 | 4 | 3 |
+| **D - Data availability** | Can lawful data at the required resolution be accessed at this stage? | 4 | 4 | 3 |
 | **F - Feasibility** | Can it be demonstrated within the current course artifact? | 5 | 5 | 2 |
 | **C - Contribution type** | Does it answer the actual predictive and technological question? | 5 | 3 | 2 |
 | **V - Venue fit** | Does it fit AI, smart cities, urban analytics, and public-safety venues? | 5 | 4 | 3 |

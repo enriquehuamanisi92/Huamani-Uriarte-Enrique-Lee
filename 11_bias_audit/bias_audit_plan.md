@@ -1,30 +1,37 @@
-# Bias Audit Plan
+# Bias and Impact Audit Plan
 
-## Scope
+## Current scope
 
-The synthetic phase tests only the audit procedure. A substantive fairness conclusion requires appropriate real data, context, and institutional and community participation. Equal metrics do not guarantee absence of harm.
+The completed experiment uses one aggregate monthly series for Comas. It can assess temporal error and drift but cannot compare intradistrict groups or establish territorial fairness. Equal district-level performance would not demonstrate absence of harm.
 
-## Bias sources
+## Measurement and modeling risks
 
-- Unequal complaint and geocoding coverage.
-- Changes in crime classification or police presence.
-- Territorial variables acting as proxies for protected characteristics.
-- Small cells with high uncertainty.
-- Threshold choices that distribute false positives and false negatives.
-- Drift and feedback after any intervention.
+- Unequal access or willingness to report crime.
+- Changes in police classification and recording practices.
+- Pandemic disruption and later temporal drift.
+- Category aggregation that may hide offense-specific behavior.
+- Small sample size relative to model flexibility.
+- False confidence from algorithmic complexity.
+- Territorial stigma if district forecasts are treated as inherent community traits.
+- Feedback effects if predictions later influence observation or enforcement.
 
-## Prespecified assessment
+## Current audit
 
-1. Describe coverage and missingness by sector and time.
-2. Compare recorded prevalence and sample sizes.
-3. Report PR-AUC, Brier score, calibration, FPR, FNR, precision, and recall by sector with bootstrap intervals.
-4. Test sensitivity to spatial unit and threshold.
-5. Compare models with and without potentially problematic variables.
-6. Inspect importance, extreme errors, and temporal stability.
-7. Document who bears the cost of each error type.
+1. Preserve temporal order and use a final future holdout.
+2. Compare trained models with persistence and seasonal baselines.
+3. Report MAE, RMSE, R², and MAPE without suppressing unfavorable results.
+4. Inspect month-level errors during changing series levels.
+5. Reject a complex model when it does not improve the simple comparator.
+6. State that the outcome measures registered reports, not complete crime incidence.
 
-Subgroups with insufficient counts will not be compared. Territorial categories will not be presented as inherent characteristics of residents.
+The current audit found that persistence outperformed every trained model. This is a safety-relevant result: complexity is not justified by the available evidence.
 
-## Review and monitoring
+## Requirements for a future territorial audit
 
-No universal disparity tolerance is assumed. Before a pilot, relevant parties must define performance and safety limits. Persistent disparity, poor calibration, or insufficient coverage may require additional data, a different model, greater aggregation, or non-use. Version, coverage, predictor drift, calibration, and errors will be reviewed on a prespecified schedule, with a named person authorized to suspend use.
+If authorized intradistrict units become available, the project must assess coverage, missingness, report volume, calibration, false-positive and false-negative rates, uncertainty, and error by prespecified territorial group. Comparisons require adequate sample sizes and must not treat territorial categories as characteristics of residents.
+
+Sensitivity analyses should vary spatial unit, forecast horizon, outcome definition, threshold, time window, and potentially problematic predictors. Any persistent disparity, poor calibration, weak coverage, or unstable transfer may require greater aggregation, a different model, additional data, or non-use.
+
+## Monitoring and stopping rules
+
+No operational pilot is authorized. Before any future pilot, responsible institutions and affected stakeholders must define acceptable performance, safety limits, human-review responsibilities, correction mechanisms, monitoring frequency, and the authority to suspend or withdraw the system.

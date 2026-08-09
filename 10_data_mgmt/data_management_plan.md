@@ -2,38 +2,40 @@
 
 ## 1. Data categories
 
-| Category | Example | Classification | Permitted repository |
+| Category | Current example | Classification | Permitted repository |
 |---|---|---|---|
-| Public synthetic | Generated CSV and demonstration results. | Public; clearly labeled synthetic. | Git/DVC. |
-| Public official | Open cartography or tables. | According to license. | Git/DVC or institutional storage. |
-| Restricted source | Authorized SIDPOL records. | Confidential/sensitive. | Controlled institutional environment. |
-| Restricted derivative | Geocoded data or small cells. | Confidential while disclosure risk exists. | Controlled institutional environment. |
-| Publishable derivative | Approved aggregate statistics. | Public after review. | Institutional repository/Git. |
+| Public official aggregate | MININTER/SIDPOL district-month counts. | Public under source license. | Git or institutional repository with attribution and manifest. |
+| Public derived output | Comas summaries, features, forecasts, metrics, and figures. | Public after disclosure and integrity review. | Git/institutional repository. |
+| Restricted source | Any future case-level police, municipal, census, or geocoded records. | Confidential or sensitive. | Controlled institutional environment only. |
+| Restricted derivative | Small cells, precise coordinates, linkage tables, or revealing model outputs. | Confidential until disclosure risk is resolved. | Controlled institutional environment only. |
 
-## 2. Responsibilities
+## 2. Current public-data record
 
-The institutional custodian retains authority over source data. The principal investigator is responsible for protocol compliance, access, versioning, and reporting. Collaborators receive only necessary access and formally accept purpose, confidentiality, and incident procedures.
+The repository preserves the official public aggregate file used in the experiment together with its publisher, system, coverage, source URL, license, download date, byte size, and SHA-256 hash in `05_pipeline/docs/source_manifest.csv`. The data dictionary distinguishes published fields from derived analytical fields.
 
-## 3. Data life cycle
+## 3. Responsibilities
 
-1. **Acquisition:** record source, authorization, date, license, and hash.
-2. **Ingestion:** validate schemas in an isolated area and preserve originals.
-3. **Processing:** versioned scripts create intermediate and analytical layers.
-4. **Analysis:** use a controlled environment and record parameters and seeds.
-5. **Review:** check quality, disclosure risk, and consistency before export.
-6. **Preservation:** retain permitted code, metadata, and outputs.
-7. **Deletion:** execute and document the policy agreed with the custodian.
+The researcher is responsible for license compliance, versioning, integrity checks, accurate scope statements, and preventing inappropriate secondary use. A future institutional data custodian would retain authority over any restricted source data.
 
-## 4. Metadata and quality
+## 4. Data life cycle
 
-Use ISO 8601 dates, UTF-8, stable non-semantic identifiers, and a declared coordinate reference system. The dictionary will specify name, type, unit, source, transformation, missingness, and sensitivity. Each analytical version will have a hash, commit, date, and owner.
+1. **Acquisition:** record publisher, URL, date, license, version, and hash.
+2. **Ingestion:** preserve the downloaded original and validate its schema.
+3. **Processing:** use versioned scripts for filtering, aggregation, and feature construction.
+4. **Analysis:** record temporal splits, model parameters, seeds, metrics, and outputs.
+5. **Review:** verify quality, disclosure risk, licensing, and consistency before publication.
+6. **Preservation:** retain permitted data, code, metadata, tests, and results.
+7. **Revision:** never silently overwrite a published source version; record a new hash and change log.
+8. **Deletion:** apply custodian and ethics requirements to any future restricted data.
 
-Quality controls cover schemas, ranges, uniqueness, duplicates, missing values, temporal consistency, spatial membership, geocoding rates, and classification changes. Corrections will be scripted; manual changes require an audit log.
+## 5. Quality and metadata
 
-## 5. FAIR principles with safeguards
+Controls cover schema, data types, range, uniqueness, month continuity, UBIGEO membership, category selection, outcome totals, missing values, temporal ordering, and leakage. Automated tests verify the implemented Comas series and features.
 
-The project will maximize findability, controlled accessibility, interoperability, and reuse of code and metadata. FAIR does not mean open sensitive data. Microdata will remain restricted; synthetic data, dictionaries, and safe authorized aggregates may be published.
+## 6. FAIR principles with safeguards
 
-## 6. Backup, retention, and disposal
+Code, metadata, and lawful aggregates should be findable, interoperable, and reusable. FAIR does not mean that restricted microdata should be public. Any future case-level data, linkage keys, exact coordinates, or small-cell outputs must remain in an approved controlled environment.
 
-Backups will be encrypted, versioned, institutionally approved, and periodically restored in tests. Git is not an authorized backup for real data. The retention period will be defined in the agreement and ethics approval. At closure, unnecessary working copies, credentials, and keys will be verifiably removed.
+## 7. Backup, retention, and disposal
+
+GitHub is acceptable for the current licensed public aggregate and approved derived outputs, but it is not an authorized store for future restricted records. Restricted backups must be encrypted, access-controlled, institutionally approved, and disposed of according to the governing agreement and ethics decision.

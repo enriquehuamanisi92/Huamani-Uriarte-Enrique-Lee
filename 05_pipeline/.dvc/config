@@ -1,7 +1,0 @@
-[core]
-    no_scm = false
-    remote = storage
-
-['remote "storage"']
-    url = gdrive://root/enrique-lee-huamani-uriarte/comas-urban-crime-risk/05_pipeline
-    gdrive_acknowledge_abuse = true

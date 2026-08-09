@@ -16,8 +16,12 @@ The project estimates aggregated territorial patterns for research and possible 
 | Drift | Crime, reporting, and institutions change. | Temporal monitoring, recalibration, and suspension rules. |
 | Secondary use | Data or scores may be reused beyond purpose. | Use agreement, access logs, and explicit prohibitions. |
 
-## Data protection and oversight
+## Current public-data status
 
-The real-data phase requires a lawful basis, custodian authorization, and applicable ethics review. Processing will follow Law No. 29733 and regulations in force. Controls include pseudonymization before analysis, separation of keys, encryption, role-based least-privilege access, logging, prohibition of unauthorized copies, verified deletion, and an incident-response plan.
+The implemented experiment uses licensed public district-month aggregates. It contains no names, identity numbers, addresses, individual coordinates, victims, suspects, or record-level descriptions. Public status does not remove the obligation to report measurement bias, prevent territorial stigma, and avoid unsupported operational use.
+
+## Future restricted-data protection and oversight
+
+Any future restricted-data phase requires a lawful basis, custodian authorization, and applicable ethics review. Processing will follow Law No. 29733 and regulations in force. Controls include pseudonymization before analysis, separation of keys, encryption, role-based least-privilege access, logging, prohibition of unauthorized copies, verified deletion, and an incident-response plan.
 
 No score may become an automatic instruction. Before any pilot, the project must define accountability, explanation, correction, and appeal mechanisms. Work will stop or return to design if authorization is absent, aggregation is unsafe, baselines are not exceeded, serious disparities cannot be mitigated, calibration is inadequate, or the proposed use exceeds the approved purpose.

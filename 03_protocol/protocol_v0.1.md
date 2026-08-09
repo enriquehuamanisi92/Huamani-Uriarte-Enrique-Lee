@@ -1,5 +1,7 @@
 # Research Protocol Outline (v0.1)
 
+> **Historical document.** This initial outline is superseded by `protocol_v1.0.md`. It is retained to show protocol development and must not be used as the current evidence-status statement.
+
 ## 1. Working Title
 
 Development and Validation of an Urban Crime Risk Prediction Model Based on Machine Learning and Geospatial Analysis for Preventive Management in Comas, Lima Metropolitana.
@@ -44,7 +46,7 @@ The intended full study design is an applied predictive-modeling study using rep
 - official district cartography and territorial segmentation
 - optional municipal or open-data indicators related to public lighting, commercial density, mobility, CCTV, and patrol coverage
 
-The current repository uses synthetic data that imitates these structures for reproducibility practice only.
+The repository now includes an official public district-level SIDPOL benchmark. Intradistrict, contextual, and restricted-data components remain pending as described in the current protocol.
 
 ## 8. Main Variables
 

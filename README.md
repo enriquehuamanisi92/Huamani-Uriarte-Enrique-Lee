@@ -12,9 +12,9 @@ This research develops and evaluates a machine-learning workflow for next-month 
 
 ## Research question and general objective
 
-**Question:** To what extent can a machine-learning model integrating crime history, socioeconomic variables, and geospatial characteristics predict monthly property-crime risk across territorial units in Comas, compared with historical baselines, under temporal and spatial validation?
+**Current benchmark question:** Can temporal machine-learning models improve next-month forecasting of aggregated theft and robbery reports in Comas over persistence and seasonal-naive baselines under a final future holdout?
 
-**Objective:** To develop and validate this model; evaluate its discrimination, calibration, utility, and territorial stability; and implement privacy, fairness, explainability, and human-oversight safeguards.
+**Full doctoral objective:** Extend the official district-level benchmark with authorized contextual and intradistrict data, evaluate temporal and spatial transfer, and implement privacy, fairness, uncertainty, explainability, and human-oversight safeguards.
 
 ## Repository map
 
@@ -23,7 +23,7 @@ This research develops and evaluates a machine-learning workflow for next-month 
 | `01_paradigm/` | Paradigm, scope, and epistemological position. |
 | `02_method/` | Method comparison and consistency matrix. |
 | `03_protocol/` | Initial outline and complete protocol v1.0. |
-| `04_literature/` | Exploratory review, search protocol, and research gaps. |
+| `04_literature/` | Executed rapid SLR, PRISMA flow, screening records, evidence matrix, and research gaps. |
 | `05_pipeline/` | Official public data, completed training pipeline, notebook, forecasts, and technical booklet. |
 | `06_repro_audit/` | Reproducibility audit and verification checklist. |
 | `07_model_card/` | Model card and dataset datasheet. |
@@ -36,28 +36,28 @@ This research develops and evaluates a machine-learning workflow for next-month 
 ## Evidence status
 
 - **Completed:** methodological formulation, protocol v1.0, governance documents, rapid SLR, and reproducible real-data district-level forecasting pipeline.
-- **Preliminary:** exploratory literature review. Previous PRISMA counts must not be treated as final results until searches and exports are completed.
-- **Pending:** authorization and access to real data, geocoding protocol, ethics review, auditable systematic search, and external validation.
+- **Completed with stated scope:** rapid SLR using OpenAlex and Crossref, including preserved exports, record-level screening, 23 empirical studies, and a PRISMA flow.
+- **Pending:** institutional-database literature extension; authorized intradistrict/contextual data; geospatial, external, calibration/uncertainty, and territorial-disparity validation; ethics review for any restricted-data phase.
 
 ## PROCIENCIA application context
 
-This project was submitted to the PROCIENCIA **Applied Research Projects 2026-02** call in the Advanced track through Asociación Civil Universidad de Ciencias y Humanidades (UCH). Submission evidence identifies Enrique Lee Huamani Uriarte and the proposal title used in this repository. Submission does not imply selection or funding. The public-data experiment now establishes a district-level forecasting benchmark; progression toward an intradistrict laboratory prototype still requires authorized finer-grained data. See `08_prociencia/prociencia_application.md`.
+This project was submitted to the PROCIENCIA **Applied Research Projects 2026-02** call in the Advanced track through Asociación Civil Universidad de Ciencias y Humanidades (UCH). Submission evidence identifies Enrique Lee Huamani Uriarte and the proposal title used in this repository. Submission does not imply selection or funding. The public-data experiment establishes a district-level forecasting benchmark; progression toward an intradistrict laboratory prototype still requires authorized finer-grained data. See `08_prociencia/prociencia_application.md`.
 
 ## Reproducing the real-data experiment
 
 ```bash
 cd 05_pipeline
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
-python src/run_experiments.py
+py -3 -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt
+.venv\Scripts\python src/run_experiments.py
+.venv\Scripts\python src/make_figures.py
 ```
 
 The results describe monthly registered police reports and must not be interpreted as complete crime incidence or causal evidence. See `05_pipeline/README.md` and the completed modeling booklet for scope and limitations.
 
 ## Responsible use
 
-SIDPOL records, addresses, point coordinates, victim data, complainant data, or information about investigated persons must never be uploaded to GitHub. Public outputs will be aggregated and subjected to disclosure control. Any institutional use will require authorization, ethics review, validation with real data, bias auditing, and documented human decision-making.
+Restricted SIDPOL records, addresses, point coordinates, victim data, complainant data, or information about investigated persons must never be uploaded to GitHub. The included source is a licensed public district-month aggregate containing no personal records. Any institutional use requires separate authorization, appropriate ethics review, additional validation, bias auditing, and documented human decision-making.
 
 ## Key methodological and regulatory sources
 

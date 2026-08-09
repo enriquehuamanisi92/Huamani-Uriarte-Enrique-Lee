@@ -1,35 +1,39 @@
 # Research Consistency Matrix
 
-## Core formulation
+## Current implemented benchmark
 
 | Element | Operational formulation |
 |---|---|
-| Problem | Preventive management in Comas relies largely on retrospective, fragmented information. No locally validated spatiotemporal model integrates complaints, census attributes, and urban context to estimate next-period risk. |
-| General question | To what extent can an integrated model predict monthly property-crime risk by territorial unit, compared with historical baselines, under temporal and spatial validation? |
-| General objective | Develop and validate an ML and geospatial model for monthly crime-risk estimation and responsible preventive decision support. |
-| General hypothesis | The integrated model will show better out-of-sample discrimination and predictive utility than a crime-history-only baseline, without substantial calibration deterioration across territorial sectors. |
-| Proposed unit of analysis | Aggregated territorial unit in Comas by month. The final geometry—grouped census blocks, grid cells, or H3 hexagons—will depend on data quality and disclosure constraints. |
-| Study population | Eligible territory-month observations in Comas during 2018-2025 that meet quality, geocoding, and privacy requirements. |
+| Problem | It is unknown whether ML improves next-month forecasting of registered theft and robbery reports in Comas over simple historical baselines. |
+| Question | Can temporal ML models outperform persistence and seasonal naive under a final future holdout? |
+| Objective | Build a reproducible official-data benchmark and quantify incremental predictive value. |
+| Unit | Comas district-month. |
+| Outcome | Theft plus robbery reports in month *t + 1*. |
+| Predictors | Current category counts, temporal lags, rolling means, trend, time index, and cyclic seasonality. |
+| Validation | Train before January 2025; evaluate 16 subsequent forecast months. |
+| Metrics | MAE, RMSE, R², and MAPE. |
+| Decision | Persistence is retained because all trained models have higher MAE. |
 
-## Objectives, evidence, and analysis
+## Full doctoral extension
 
-| Specific objective | Variable or evidence | Indicator | Planned analysis |
+| Element | Planned formulation |
+|---|---|
+| Problem | No locally validated model integrates authorized crime history, population exposure, socioeconomic context, and safe geospatial units for Comas. |
+| Question | Does multisource integration improve temporal and spatial transfer over crime-history baselines? |
+| Unit | Safe intradistrict territory-month, selected after quality and disclosure assessment. |
+| Outcome | Next-month property-crime count or exposure-adjusted rate. |
+| Validation | Rolling temporal windows, untouched final period, and grouped spatial transfer. |
+| Evidence required | Data authorization, provenance, geocoding quality, exposure definition, calibration/uncertainty, external validity, and disparity audit. |
+
+## Objectives, evidence, and status
+
+| Objective | Evidence | Analysis | Status |
 |---|---|---|---|
-| SO1. Build a documented spatiotemporal dataset. | Aggregated complaints, census, and urban context. | Completeness, duplicates, geocoding, temporal consistency. | Profiling, quality rules, and missingness analysis. |
-| SO2. Characterize spatial and temporal patterns. | Property-crime count and rate. | Trend, seasonality, global/local Moran statistics. | Time series, maps, and spatial autocorrelation. |
-| SO3. Train models and baselines. | Predictors available through month t. | Probability or risk for t+1. | Logistic regression, tree models, and persistence baseline. |
-| SO4. Validate generalization. | Out-of-sample predictions. | PR-AUC, ROC-AUC, Brier score, calibration, precision, recall, F1. | Rolling temporal windows and grouped spatial splits. |
-| SO5. Examine interpretability and bias. | Errors and explanations by sector. | FNR, FPR, calibration, SHAP/permutation importance. | Stratified analysis with confidence intervals. |
-| SO6. Translate results into preventive support. | Aggregated maps and scenarios. | Readability, stability, and supervised utility. | Technical and, if authorized, expert evaluation. |
+| Document official data | Manifest, license, hash, dictionary | Provenance and schema checks | Completed |
+| Characterize district trend | Monthly theft and robbery counts | Time-series plots and summaries | Completed |
+| Compare models and baselines | Out-of-time forecasts | Six-method comparison | Completed |
+| Test intradistrict spatial transfer | Authorized territorial units | Grouped spatial validation | Pending data |
+| Evaluate contextual predictors | Census/urban variables with valid timing | Incremental-value and sensitivity analysis | Pending data |
+| Assess territorial disparities | Adequately sized territorial groups | Error, calibration, and uncertainty comparison | Pending data |
 
-## Main variables
-
-| Role | Variable | Preliminary definition | Scale/source |
-|---|---|---|---|
-| Primary outcome | Next-month crime incidence | Count or population-adjusted rate of property-crime complaints at t+1; risk categories are secondary. | Authorized, aggregated SIDPOL data. |
-| Temporal predictor | Recent history | 1-, 3-, 6-, and 12-month lags, trend, and seasonality, using no future information. | Derived from complaints. |
-| Socioeconomic predictor | Territorial vulnerability | Prespecified index derived from census variables with temporal-validity documentation. | 2017 National Census/INEI. |
-| Urban predictor | Exposure and environment | Commercial density, connectivity, lighting, or other available indicators. | Official cartography and records. |
-| Stratifier | Territorial sector | Spatial grouping for stability and error-disparity assessment. | Official cartography. |
-
-The final outcome and thresholds will be frozen before examining the test set. A synthetic percentile will not become an institutional risk threshold without empirical justification and authorized stakeholder participation.
+The implemented benchmark and full extension are deliberately separated. District-level results are not presented as geospatial validation, and a complex model is not selected merely because it was trained.

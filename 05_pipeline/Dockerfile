@@ -12,4 +12,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD ["bash"]
+CMD ["python", "src/run_experiments.py"]

@@ -12,11 +12,11 @@ This work is also framed as an applied research proposal being prepared for a PR
 
 ![Illustrative urban incident context for the Comas predictive-risk project](urban_incident_context.png)
 
-The figure above is a synthetic visual aid generated from the repository's demonstration dataset. It represents how current public-safety incidence signals could be aggregated into territorial risk surfaces for research and preventive decision support. It does not contain real SIDPOL records, real police reports, victim information, addresses, or operational municipal data.
+The figure above is a conceptual illustration of a possible future territorial risk surface. It is not an empirical output from the current district-level dataset and must not be interpreted as a validated map of Comas.
 
-The public monitoring context that motivates the project includes the MININTER district-level crime incidence portal, the MININTER georeferenced crime map, INEI DATACRIM, and INEI citizen-security statistics. These sources support the relevance of studying territorial incident patterns, complaint dynamics, and security-risk concentration in Peru; however, the current repository keeps the visual layer synthetic until authorized real data are obtained and ethically processed.
+The public monitoring context includes the MININTER district-level crime incidence portal, the MININTER georeferenced crime map, INEI DATACRIM, and INEI citizen-security statistics. The repository now implements a real public-data district-month benchmark for Comas. It does not create an empirical intradistrict map because the published table contains no finer spatial units or coordinates.
 
-The intended contribution for the PROCIENCIA-CONCYTEC application is a TRL 4 laboratory prototype: a reproducible pipeline that integrates complaint-style records, socioeconomic indicators, and geospatial segmentation to produce validated urban crime-risk maps for Comas. The prototype is designed as decision support for prevention, not as an automatic policing or individual-level surveillance system.
+The current contribution is a reproducible district-level forecasting benchmark. The intended longer-term contribution remains a responsibly validated aggregate geospatial prototype, conditional on authorized data and TRL evidence. It is designed as research decision support, not automatic policing or individual-level surveillance.
 
 - MININTER district-level crime incidence portal: <https://observatorio.mininter.gob.pe/content/incidencia-delictiva-distrital-0>
 - MININTER georeferenced crime map: <https://observatorio.mininter.gob.pe/MapaDelDelitoGeorreferenciado>
