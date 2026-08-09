@@ -2,9 +2,11 @@
 
 ## Monthly Property-Crime Forecasting in Comas, Metropolitan Lima
 
-**Researcher:** Enrique Lee Huamani Uriarte  
-**Data source:** Ministry of the Interior / SIDPOL  
-**Study period:** January 2018–May 2026  
+**Researcher:** Enrique Lee Huamani Uriarte
+
+**Data source:** Ministry of the Interior / SIDPOL
+
+**Study period:** January 2018–May 2026
 **Geographic scope:** Comas District, UBIGEO 150110
 
 ## Executive summary
