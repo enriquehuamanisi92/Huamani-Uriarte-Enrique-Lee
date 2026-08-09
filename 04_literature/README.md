@@ -11,6 +11,7 @@ Esta carpeta documenta la revisión exploratoria de literatura del proyecto doct
 | Archivo | Contenido |
 |---|---|
 | [`systematic_review.md`](systematic_review.md) | Protocolo de búsqueda, criterios de elegibilidad, estrategia de extracción y síntesis exploratoria. |
+| [`prisma_2020_flow.md`](prisma_2020_flow.md) | Hoja de trabajo alineada con el diagrama PRISMA 2020, conteos y controles de consistencia. |
 | [`gap_analysis.md`](gap_analysis.md) | Brechas preliminares, evidencia necesaria para confirmarlas y respuesta propuesta del proyecto. |
 | [`search_log.csv`](search_log.csv) | Bitácora reproducible para registrar consultas, fechas, filtros y resultados por base de datos. |
 | [`screening_log.csv`](screening_log.csv) | Registro de deduplicación y decisiones de selección por título, resumen y texto completo. |
