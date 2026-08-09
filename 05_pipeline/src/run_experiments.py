@@ -1,63 +1,40 @@
-import os
+"""Run repeated real-data experiments and save auditable result tables."""
+
 from pathlib import Path
 
 import pandas as pd
 
-from train import MLFLOW_AVAILABLE, main
-
-if MLFLOW_AVAILABLE:
-    import mlflow
+from train import run_training
 
 
-SEEDS = [13, 21, 42, 87, 100]
-HOLDOUT_YEAR = 2024
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-OUTPUT_PATH = PROJECT_ROOT / "docs" / "experiment_results.csv"
-TRACKING_PATH = PROJECT_ROOT / "mlruns"
-LOG_MODELS = os.getenv("MLFLOW_LOG_MODELS", "0") == "1"
-os.environ.setdefault("MLFLOW_ALLOW_FILE_STORE", "true")
+DOCS = PROJECT_ROOT / "docs"
+SEEDS = [13, 21, 42, 87, 100]
 
 
 def run():
-    all_rows = []
-
-    if MLFLOW_AVAILABLE:
-        mlflow.set_tracking_uri(TRACKING_PATH.resolve().as_uri())
-        mlflow.set_experiment("comas-urban-crime-risk-baseline")
-        print(f"MLflow tracking URI: {TRACKING_PATH}")
-
+    DOCS.mkdir(parents=True, exist_ok=True)
+    all_results = []
+    canonical_forecasts = None
+    metadata = None
     for seed in SEEDS:
-        fitted, results = main(seed=seed, holdout_year=HOLDOUT_YEAR)
+        results, forecasts, metadata, _ = run_training(seed=seed)
+        all_results.append(results)
+        if seed == 42:
+            canonical_forecasts = forecasts
 
-        for row in results:
-            out_row = {"seed": seed, "holdout_year": HOLDOUT_YEAR, **row}
-            all_rows.append(out_row)
+    experiments = pd.concat(all_results, ignore_index=True)
+    experiments.to_csv(DOCS / "experiment_results.csv", index=False)
+    canonical_forecasts.to_csv(DOCS / "test_period_forecasts.csv", index=False)
+    pd.DataFrame([metadata]).to_csv(DOCS / "real_data_summary.csv", index=False)
 
-            if MLFLOW_AVAILABLE:
-                with mlflow.start_run(run_name=f"{row['model']}-seed-{seed}"):
-                    mlflow.log_param("seed", seed)
-                    mlflow.log_param("model", row["model"])
-                    mlflow.log_param("holdout_year", HOLDOUT_YEAR)
-                    mlflow.log_param("classification_threshold", row["classification_threshold"])
-                    for metric_name in [
-                        "auc_roc",
-                        "pr_auc",
-                        "accuracy",
-                        "precision",
-                        "recall",
-                        "f1",
-                    ]:
-                        mlflow.log_metric(metric_name, row[metric_name])
-                    mlflow.set_tag("project", "comas-urban-crime-risk")
-                    mlflow.set_tag("data_type", "synthetic")
-                    mlflow.set_tag("model_artifact_logging", "enabled" if LOG_MODELS else "disabled")
-                    if LOG_MODELS:
-                        mlflow.sklearn.log_model(fitted[row["model"]], "model")
-
-    df = pd.DataFrame(all_rows)
-    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    df.to_csv(OUTPUT_PATH, index=False)
-    print(f"Saved experiment summary to: {OUTPUT_PATH}")
+    summary = experiments.groupby("model").agg(
+        mae_mean=("mae", "mean"), mae_sd=("mae", "std"),
+        rmse_mean=("rmse", "mean"), r2_mean=("r2", "mean"),
+        mape_pct_mean=("mape_pct", "mean"),
+    ).sort_values("mae_mean")
+    summary.to_csv(DOCS / "model_comparison.csv")
+    print(summary.to_string())
 
 
 if __name__ == "__main__":

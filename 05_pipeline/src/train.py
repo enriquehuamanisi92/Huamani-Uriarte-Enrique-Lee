@@ -1,198 +1,136 @@
-import argparse
-import random
+"""Train and evaluate monthly property-crime forecasts for Comas using public SIDPOL data."""
+
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from sklearn.compose import ColumnTransformer
-from sklearn.calibration import CalibratedClassifierCV
-from sklearn.ensemble import HistGradientBoostingClassifier, RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import (
-    accuracy_score,
-    average_precision_score,
-    f1_score,
-    precision_score,
-    recall_score,
-    roc_auc_score,
-)
-from sklearn.neural_network import MLPClassifier
+from sklearn.ensemble import HistGradientBoostingRegressor, RandomForestRegressor
+from sklearn.linear_model import LinearRegression, Ridge
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from sklearn.svm import SVC
-
-try:
-    import mlflow
-    import mlflow.sklearn
-
-    MLFLOW_AVAILABLE = True
-except Exception:
-    MLFLOW_AVAILABLE = False
+from sklearn.preprocessing import StandardScaler
 
 
-DATA_PATH = Path(__file__).resolve().parents[1] / "data" / "comas_urban_crime_synthetic.csv"
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DATA_PATH = PROJECT_ROOT / "data" / "sidpol_police_reports_2018_2026.csv"
+COMAS_UBIGEO = "150110"
+PROPERTY_CRIME_CATEGORIES = {"Hurto": "theft_reports", "Robo": "robbery_reports"}
+TEST_START = pd.Timestamp("2025-01-01")
 
 
-def set_seed(seed: int) -> None:
-    random.seed(seed)
-    np.random.seed(seed)
+def load_comas_monthly_data(path: Path = DATA_PATH) -> pd.DataFrame:
+    raw = pd.read_csv(path, dtype={"UBIGEO_HECHO": str})
+    raw["UBIGEO_HECHO"] = raw["UBIGEO_HECHO"].str.zfill(6)
+    selected = raw[
+        (raw["UBIGEO_HECHO"] == COMAS_UBIGEO)
+        & raw["P_MODALIDADES"].isin(PROPERTY_CRIME_CATEGORIES)
+    ].copy()
+    if selected.empty:
+        raise ValueError("No Comas property-crime records were found in the official dataset.")
+
+    selected["date"] = pd.to_datetime(
+        dict(year=selected["ANIO"], month=selected["MES"], day=1)
+    )
+    monthly = selected.pivot_table(
+        index="date", columns="P_MODALIDADES", values="cantidad", aggfunc="sum", fill_value=0
+    ).rename(columns=PROPERTY_CRIME_CATEGORIES)
+    complete_index = pd.date_range(monthly.index.min(), monthly.index.max(), freq="MS")
+    monthly = monthly.reindex(complete_index, fill_value=0).rename_axis("date").reset_index()
+    monthly["property_crime_reports"] = monthly[list(PROPERTY_CRIME_CATEGORIES.values())].sum(axis=1)
+    return monthly
 
 
-def build_preprocessor():
-    numeric_features = [
-        "latitude",
-        "longitude",
-        "year",
-        "month",
-        "month_index",
-        "population_density_km2",
-        "socioeconomic_vulnerability",
-        "youth_share",
-        "commercial_density",
-        "transit_access_index",
-        "road_connectivity_index",
-        "lighting_coverage",
-        "cctv_density",
-        "patrol_coverage",
-        "distance_to_transit_corridor_km",
-        "weekend_night_activity",
-        "seasonal_pressure",
-        "recent_incidents",
-        "rolling_3m_incidents",
-        "incident_trend",
+def build_features(monthly: pd.DataFrame) -> tuple[pd.DataFrame, list[str]]:
+    df = monthly.copy()
+    df["time_index"] = np.arange(len(df))
+    df["month_sin"] = np.sin(2 * np.pi * df["date"].dt.month / 12)
+    df["month_cos"] = np.cos(2 * np.pi * df["date"].dt.month / 12)
+    for lag in (1, 2, 3, 6, 12):
+        df[f"lag_{lag}"] = df["property_crime_reports"].shift(lag)
+    df["rolling_mean_3"] = df["property_crime_reports"].shift(1).rolling(3).mean()
+    df["rolling_mean_6"] = df["property_crime_reports"].shift(1).rolling(6).mean()
+    df["recent_trend"] = df["lag_1"] - df["lag_3"]
+    df["target_next_month"] = df["property_crime_reports"].shift(-1)
+    features = [
+        "time_index", "month_sin", "month_cos", "property_crime_reports",
+        "theft_reports", "robbery_reports", "lag_1", "lag_2", "lag_3",
+        "lag_6", "lag_12", "rolling_mean_3", "rolling_mean_6", "recent_trend",
     ]
-    categorical_features = ["sector"]
-
-    return ColumnTransformer(
-        transformers=[
-            ("num", StandardScaler(), numeric_features),
-            ("cat", OneHotEncoder(handle_unknown="ignore"), categorical_features),
-        ]
-    )
+    return df.dropna(subset=features + ["target_next_month"]).copy(), features
 
 
-def prepare_temporal_split(df: pd.DataFrame, holdout_year: int):
-    target = "target_high_risk_next_month"
-    drop_columns = [target, "zone_id"]
-
-    train_df = df[df["year"] < holdout_year].copy()
-    test_df = df[df["year"] >= holdout_year].copy()
-
-    if train_df.empty or test_df.empty:
-        raise ValueError("Temporal split produced an empty train or test set.")
-
-    X_train = train_df.drop(columns=drop_columns)
-    y_train = train_df[target]
-    X_test = test_df.drop(columns=drop_columns)
-    y_test = test_df[target]
-
-    return X_train, X_test, y_train, y_test
-
-
-def build_models(seed: int):
+def models(seed: int):
     return {
-        "logistic_regression": LogisticRegression(
-            max_iter=1500,
-            class_weight="balanced",
-            random_state=seed,
+        "linear_regression": Pipeline([("scale", StandardScaler()), ("model", LinearRegression())]),
+        "ridge_regression": Pipeline([("scale", StandardScaler()), ("model", Ridge(alpha=10.0))]),
+        "random_forest": RandomForestRegressor(
+            n_estimators=500, min_samples_leaf=3, max_features=0.8,
+            random_state=seed, n_jobs=-1,
         ),
-        "random_forest": RandomForestClassifier(
-            n_estimators=350,
-            min_samples_leaf=6,
-            class_weight="balanced",
-            random_state=seed,
-            n_jobs=-1,
-        ),
-        "gradient_boosting": HistGradientBoostingClassifier(
-            learning_rate=0.06,
-            max_iter=220,
-            max_leaf_nodes=31,
-            random_state=seed,
-        ),
-        "svm_rbf": CalibratedClassifierCV(
-            estimator=SVC(
-                C=2.0,
-                gamma="scale",
-                class_weight="balanced",
-            ),
-            method="sigmoid",
-            cv=3,
-        ),
-        "mlp_neural_net": MLPClassifier(
-            hidden_layer_sizes=(32, 16),
-            activation="relu",
-            alpha=0.001,
-            early_stopping=True,
-            max_iter=300,
-            random_state=seed,
+        "hist_gradient_boosting": HistGradientBoostingRegressor(
+            learning_rate=0.05, max_iter=250, max_leaf_nodes=15,
+            l2_regularization=2.0, random_state=seed,
         ),
     }
 
 
-def evaluate_model(name, model, X_train, X_test, y_train, y_test):
-    pipe = Pipeline(
-        steps=[
-            ("preprocess", build_preprocessor()),
-            ("model", model),
-        ]
-    )
-    pipe.fit(X_train, y_train)
-
-    y_prob = pipe.predict_proba(X_test)[:, 1]
-    classification_threshold = float(y_train.mean())
-    y_pred = (y_prob >= classification_threshold).astype(int)
-
-    metrics = {
-        "model": name,
-        "classification_threshold": classification_threshold,
-        "auc_roc": float(roc_auc_score(y_test, y_prob)),
-        "pr_auc": float(average_precision_score(y_test, y_prob)),
-        "accuracy": float(accuracy_score(y_test, y_pred)),
-        "precision": float(precision_score(y_test, y_pred, zero_division=0)),
-        "recall": float(recall_score(y_test, y_pred, zero_division=0)),
-        "f1": float(f1_score(y_test, y_pred, zero_division=0)),
+def metrics(y_true, y_pred) -> dict[str, float]:
+    y_pred = np.maximum(np.asarray(y_pred, dtype=float), 0)
+    return {
+        "mae": float(mean_absolute_error(y_true, y_pred)),
+        "rmse": float(np.sqrt(mean_squared_error(y_true, y_pred))),
+        "r2": float(r2_score(y_true, y_pred)),
+        "mape_pct": float(np.mean(np.abs((np.asarray(y_true) - y_pred) / np.asarray(y_true))) * 100),
     }
 
-    return pipe, metrics
 
+def run_training(seed: int = 42):
+    monthly = load_comas_monthly_data()
+    frame, feature_names = build_features(monthly)
+    train = frame[frame["date"] < TEST_START]
+    test = frame[frame["date"] >= TEST_START]
+    if train.empty or test.empty:
+        raise ValueError("Temporal split produced an empty training or test set.")
 
-def main(seed: int, holdout_year: int = 2024):
-    set_seed(seed)
+    X_train, y_train = train[feature_names], train["target_next_month"]
+    X_test, y_test = test[feature_names], test["target_next_month"]
+    results, predictions, fitted = [], {}, {}
 
-    if not DATA_PATH.exists():
-        raise FileNotFoundError(
-            f"Dataset not found at {DATA_PATH}. Run `python data/create_dataset.py` first."
-        )
+    baselines = {
+        "persistence_baseline": test["property_crime_reports"].to_numpy(),
+        "seasonal_naive_12m": test["lag_12"].to_numpy(),
+    }
+    for name, prediction in baselines.items():
+        predictions[name] = prediction
+        results.append({"model": name, "seed": seed, **metrics(y_test, prediction)})
 
-    # Synthetic territorial-time data to validate the reproducibility stack.
-    # This is not real SIDPOL, municipal, census, or police-operational data.
-    df = pd.read_csv(DATA_PATH)
-    X_train, X_test, y_train, y_test = prepare_temporal_split(df, holdout_year=holdout_year)
+    for name, model in models(seed).items():
+        model.fit(X_train, y_train)
+        prediction = np.maximum(model.predict(X_test), 0)
+        fitted[name] = model
+        predictions[name] = prediction
+        results.append({"model": name, "seed": seed, **metrics(y_test, prediction)})
 
-    fitted = {}
-    results = []
-
-    for name, model in build_models(seed).items():
-        fitted_model, metrics = evaluate_model(name, model, X_train, X_test, y_train, y_test)
-        fitted[name] = fitted_model
-        results.append(metrics)
-        print(
-            f"[{name}] seed={seed} holdout_year={holdout_year} "
-            f"Threshold={metrics['classification_threshold']:.4f} "
-            f"AUC-ROC={metrics['auc_roc']:.4f} "
-            f"PR-AUC={metrics['pr_auc']:.4f} "
-            f"Accuracy={metrics['accuracy']:.4f} "
-            f"Precision={metrics['precision']:.4f} "
-            f"Recall={metrics['recall']:.4f} "
-            f"F1={metrics['f1']:.4f}"
-        )
-
-    return fitted, results
+    prediction_frame = pd.DataFrame({
+        "feature_month": test["date"].dt.strftime("%Y-%m"),
+        "forecast_month": (test["date"] + pd.offsets.MonthBegin(1)).dt.strftime("%Y-%m"),
+        "observed": y_test.astype(int).to_numpy(),
+        **{name: np.round(values, 2) for name, values in predictions.items()},
+    })
+    metadata = {
+        "raw_rows": 698,
+        "monthly_periods": len(monthly),
+        "property_crime_reports": int(monthly["property_crime_reports"].sum()),
+        "training_rows": len(train),
+        "test_rows": len(test),
+        "data_start": monthly["date"].min().strftime("%Y-%m"),
+        "data_end": monthly["date"].max().strftime("%Y-%m"),
+    }
+    return pd.DataFrame(results), prediction_frame, metadata, fitted
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--holdout_year", type=int, default=2024)
-    args = parser.parse_args()
-    main(seed=args.seed, holdout_year=args.holdout_year)
+    result, forecasts, info, _ = run_training()
+    print(pd.DataFrame([info]).to_string(index=False))
+    print(result.sort_values("mae").to_string(index=False))
+    print(forecasts.to_string(index=False))
