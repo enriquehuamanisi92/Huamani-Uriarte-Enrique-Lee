@@ -12,16 +12,19 @@ Official sources:
 
 ## 2. Application status
 
-The project titled **“Development and Validation of an Urban Crime Risk Prediction Model Based on Machine Learning and Geospatial Analysis for Preventive Management in the District of Comas, Metropolitan Lima”** was submitted to the **Applied Research Projects 2026-02** call.
+The project was formally submitted through the PROCIENCIA application platform to call **E041-2026-02, “Applied Research Projects 2026-02.”** The official Spanish proposal title is **“Desarrollo y Validación de un Modelo Predictivo de Riesgo Delictivo Urbano basado en Machine Learning y Análisis Geoespacial para la Gestión Preventiva en el Distrito de Comas, Lima Metropolitana.”** Its English rendering is **“Development and Validation of an Urban Crime Risk Prediction Model Based on Machine Learning and Geospatial Analysis for Preventive Management in the District of Comas, Metropolitan Lima.”**
 
 | Field | Recorded information |
 |---|---|
 | Applicant institution | Asociación Civil Universidad de Ciencias y Humanidades (UCH) |
 | Researcher | Enrique Lee Huamani Uriarte |
-| Application identifier shown | 102632 |
-| Modality shown | Advanced (*Avanzado*) |
+| Call code | E041-2026-02 |
+| Application registration number | 102632 |
+| Submission timestamp | February 27, 2026, 12:42:26 (Peru time) |
+| Modality | Advanced, Lima Metropolitan quota (*Avanzados cupo para Lima Metropolitana*) |
 | Thematic area shown | Information and Communication Technologies |
-| Public evidentiary claim | Submitted/registered only |
+| Applicant-supplied evidence | PROCIENCIA-generated 31-page submitted-application PDF |
+| Verified claim | Formally submitted/registered; selection and funding remain unconfirmed |
 
 Submission does not imply eligibility, selection, award, funding, or authorization to deploy a public-safety system. Any status change must be supported by an official PROCIENCIA publication or formal institutional communication.
 
@@ -80,5 +83,5 @@ The project may contribute locally generated evidence, an auditable alternative 
 
 | Date | Update | Evidence |
 |---|---|---|
-| 2026-08-01 | Application context documented. | Applicant-supplied submission record and official call sources. |
+| 2026-02-27 | Proposal formally submitted at 12:42:26 Peru time under registration number 102632. | PROCIENCIA-generated submitted-application PDF. |
 | 2026-08-09 | Rapid SLR and public MININTER/SIDPOL benchmark completed. | Search exports, pipeline, forecasts, tests, and executed notebook. |

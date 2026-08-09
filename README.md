@@ -41,7 +41,7 @@ This research develops and evaluates a machine-learning workflow for next-month 
 
 ## PROCIENCIA application context
 
-This project was submitted to the PROCIENCIA **Applied Research Projects 2026-02** call in the Advanced track through Asociación Civil Universidad de Ciencias y Humanidades (UCH). Submission evidence identifies Enrique Lee Huamani Uriarte and the proposal title used in this repository. Submission does not imply selection or funding. The public-data experiment establishes a district-level forecasting benchmark; progression toward an intradistrict laboratory prototype still requires authorized finer-grained data. See `08_prociencia/prociencia_application.md`.
+This project was formally submitted to PROCIENCIA call **E041-2026-02, “Applied Research Projects 2026-02,”** under registration number **102632** on February 27, 2026, in the Advanced track for Metropolitan Lima through Asociación Civil Universidad de Ciencias y Humanidades (UCH). Submission does not imply selection or funding. The public-data experiment establishes a district-level forecasting benchmark; progression toward an intradistrict laboratory prototype still requires authorized finer-grained data. See `08_prociencia/prociencia_application.md`.
 
 ## Reproducing the real-data experiment
 
