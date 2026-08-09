@@ -1,68 +1,32 @@
-# Hoja de trabajo para el diagrama PRISMA 2020
+# Flujo PRISMA 2020 ejecutado
 
-Esta hoja corresponde al formato «PRISMA 2020 flow diagram for new systematic reviews» proporcionado para la presentación. Sustituya `PENDIENTE` únicamente con conteos obtenidos de las exportaciones y bitácoras.
+**Fecha:** 9 de agosto de 2026. **Fuentes:** OpenAlex y Crossref. **Alcance:** primeros 50 resultados por relevancia de cada fuente.
 
-## 1. Identificación
+![Diagrama PRISMA 2020](prisma_flow_diagram.svg)
 
-| Campo del formato | Valor | Fuente de verificación |
-|---|---:|---|
-| Registros identificados en Scopus | PENDIENTE | Exportación y `search_log.csv` |
-| Registros identificados en Web of Science | PENDIENTE | Exportación y `search_log.csv` |
-| Registros identificados en IEEE Xplore | PENDIENTE | Exportación y `search_log.csv` |
-| Registros identificados en ACM Digital Library | PENDIENTE | Exportación y `search_log.csv` |
-| Registros identificados en SciELO | PENDIENTE | Exportación y `search_log.csv` |
-| Registros identificados en registros | 0, salvo que se use uno | Exportación |
-| **Total identificado** | **PENDIENTE** | Suma de las filas anteriores |
-
-## 2. Eliminación antes del cribado
-
-| Campo del formato | Valor | Fuente de verificación |
-|---|---:|---|
-| Duplicados eliminados | PENDIENTE | Registro de deduplicación |
-| Marcados como inelegibles por automatización | 0, salvo uso documentado | Log de la herramienta |
-| Eliminados por otras razones | PENDIENTE | Motivo documentado |
-| **Registros que pasan a cribado** | **PENDIENTE** | Total identificado menos eliminaciones |
-
-## 3. Cribado y recuperación
-
-| Campo del formato | Valor | Fuente de verificación |
-|---|---:|---|
-| Registros cribados por título/resumen | PENDIENTE | `screening_log.csv` |
-| Registros excluidos | PENDIENTE | `screening_log.csv` |
-| Informes buscados para recuperación | PENDIENTE | Diferencia de las dos filas anteriores |
-| Informes no recuperados | PENDIENTE | Intentos documentados |
-| Informes evaluados para elegibilidad | PENDIENTE | `screening_log.csv` |
-
-## 4. Exclusiones a texto completo
-
-Use razones mutuamente excluyentes y conserve una razón principal por informe.
-
-| Razón | n |
+| Etapa | n |
 |---|---:|
-| Sin predicción fuera de muestra | PENDIENTE |
-| Predicción individual fuera del alcance | PENDIENTE |
-| Contexto no urbano o no transferible | PENDIENTE |
-| Datos/método insuficientemente descritos | PENDIENTE |
-| Tipo documental no elegible | PENDIENTE |
-| Duplicado no detectado previamente | PENDIENTE |
-| Otra razón especificada | PENDIENTE |
-| **Total de informes excluidos** | **PENDIENTE** |
+| Registros identificados: OpenAlex | 50 |
+| Registros identificados: Crossref | 50 |
+| **Total identificado** | **100** |
+| Duplicados eliminados | 3 |
+| Registros únicos cribados | 97 |
+| Excluidos por título mediante regla reproducible | 49 |
+| Informes buscados | 48 |
+| Informes no recuperados en acceso abierto | 10 |
+| Informes evaluados | 38 |
+| Excluidos a texto completo | 15 |
+| **Estudios empíricos incluidos** | **23** |
 
-## 5. Inclusión
+## Exclusiones a texto completo
 
-| Campo del formato | Valor | Fuente de verificación |
-|---|---:|---|
-| Estudios incluidos en la revisión | PENDIENTE | Identificadores únicos de estudio |
-| Informes de los estudios incluidos | PENDIENTE | Documentos asociados |
+| Razón principal | n |
+|---|---:|
+| Revisión secundaria sin nuevo estudio empírico | 5 |
+| Alcance o calidad documental insuficiente | 6 |
+| Validación predictiva no verificable o fuera del alcance | 4 |
+| **Total** | **15** |
 
-Un estudio puede tener más de un informe; por ello ambas cifras pueden diferir.
+Comprobación: `100 − 3 = 97`; `97 − 49 = 48`; `48 − 10 = 38`; `38 − 15 = 23`.
 
-## 6. Controles antes de completar el Word
-
-1. Registros cribados = total identificado − duplicados − automatización − otras eliminaciones previas.
-2. Informes buscados = registros cribados − registros excluidos.
-3. Informes evaluados = informes buscados − informes no recuperados.
-4. Informes evaluados = informes excluidos a texto completo + informes incluidos.
-5. Cada número debe poder reconstruirse desde `search_log.csv` o `screening_log.csv`.
-6. Si no se utilizaron herramientas de automatización, registre cero; no deje el campo ambiguo.
-7. Reporte, cuando sea posible, el número identificado por cada base, como recomienda la nota del formato PRISMA.
+Las decisiones están en `screening_log.csv`, los resultados originales en `search_results_2026-08-09.csv` y la regla en `run_literature_search.ps1`. Scopus, Web of Science, IEEE Xplore, ACM Digital Library y SciELO quedan como ampliación institucional pendiente; por ello, este flujo corresponde a una RSL rápida reproducible y no a exhaustividad universal.

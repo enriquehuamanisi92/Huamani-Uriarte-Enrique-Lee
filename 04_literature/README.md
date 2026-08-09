@@ -11,7 +11,10 @@ Esta carpeta documenta la revisión exploratoria de literatura del proyecto doct
 | Archivo | Contenido |
 |---|---|
 | [`systematic_review.md`](systematic_review.md) | Protocolo de búsqueda, criterios de elegibilidad, estrategia de extracción y síntesis exploratoria. |
-| [`prisma_2020_flow.md`](prisma_2020_flow.md) | Hoja de trabajo alineada con el diagrama PRISMA 2020, conteos y controles de consistencia. |
+| [`prisma_2020_flow.md`](prisma_2020_flow.md) | Flujo PRISMA 2020 ejecutado, conteos y controles de consistencia. |
+| [`prisma_flow_diagram.svg`](prisma_flow_diagram.svg) | Gráfico PRISMA con los conteos reales de la búsqueda. |
+| [`search_results_2026-08-09.csv`](search_results_2026-08-09.csv) | Exportación congelada de los 100 registros identificados. |
+| [`run_literature_search.ps1`](run_literature_search.ps1) | Script reproducible de consulta, deduplicación y cribado inicial. |
 | [`gap_analysis.md`](gap_analysis.md) | Brechas preliminares, evidencia necesaria para confirmarlas y respuesta propuesta del proyecto. |
 | [`search_log.csv`](search_log.csv) | Bitácora reproducible para registrar consultas, fechas, filtros y resultados por base de datos. |
 | [`screening_log.csv`](screening_log.csv) | Registro de deduplicación y decisiones de selección por título, resumen y texto completo. |
@@ -19,9 +22,9 @@ Esta carpeta documenta la revisión exploratoria de literatura del proyecto doct
 
 ## Alcance y estado actual
 
-La revisión se encuentra en fase de protocolo y síntesis exploratoria. Las búsquedas formales en Scopus, Web of Science, IEEE Xplore, ACM Digital Library y SciELO están pendientes de ejecución y registro. Google Scholar se empleará solo como fuente complementaria.
+El 9 de agosto de 2026 se ejecutó una RSL rápida reproducible en OpenAlex y Crossref. Se identificaron 100 registros, se cribaron 97 registros únicos, se evaluaron 38 informes y se incluyeron 23 estudios empíricos.
 
-En consecuencia, todavía no se reportan cantidades definitivas de registros identificados, excluidos o incluidos. Tampoco se presenta un diagrama PRISMA como resultado final hasta disponer de exportaciones de las bases de datos, fechas de búsqueda, decisiones por registro y textos evaluados. Esta decisión evita presentar como evidencia cifras que no puedan auditarse.
+La exportación, decisiones y diagrama están versionados en esta carpeta. Scopus, Web of Science, IEEE Xplore, ACM Digital Library y SciELO permanecen pendientes como ampliación con acceso institucional; los resultados actuales no se presentan como exhaustivos.
 
 ## Hallazgos preliminares
 

@@ -11,7 +11,7 @@
 **Versión:** protocolo RSL 1.0 — agosto de 2026
 **Guía de reporte:** PRISMA 2020
 
-> **Estado de la evidencia.** Este documento contiene el protocolo completo y una síntesis exploratoria sustentada en literatura semilla. La búsqueda sistemática, la deduplicación y el cribado todavía deben ejecutarse. Por ello, los conteos PRISMA y las conclusiones definitivas permanecen pendientes. Esta precisión protege la integridad académica y permite presentar claramente qué está terminado y qué falta realizar.
+> **Estado de la evidencia.** El 9 de agosto de 2026 se ejecutó una RSL rápida reproducible en OpenAlex y Crossref: 100 registros identificados, 97 únicos cribados, 38 informes evaluados y 23 estudios empíricos incluidos. Las bases institucionales Scopus, Web of Science, IEEE Xplore, ACM Digital Library y SciELO permanecen pendientes para ampliar la cobertura.
 
 ## Resumen
 
@@ -151,23 +151,19 @@ Los estudios se agruparán por enfoque de modelado, escala espacial, horizonte t
 
 ## 4. Flujo PRISMA 2020
 
-El diagrama proporcionado requiere los siguientes conteos. La hoja operativa está en `prisma_2020_flow.md`.
+El diagrama proporcionado se completó con los conteos auditables de la búsqueda ejecutada. El gráfico está en `prisma_flow_diagram.svg` y su detalle en `prisma_2020_flow.md`.
 
 | Etapa | Conteo |
 |---|---:|
-| Registros identificados en bases de datos | Pendiente |
-| Registros identificados en registros u otras fuentes | Pendiente |
-| Duplicados eliminados | Pendiente |
-| Registros eliminados por automatización | 0, salvo que se documente su uso |
-| Registros eliminados por otras razones antes del cribado | Pendiente |
-| Registros cribados por título y resumen | Pendiente |
-| Registros excluidos en cribado | Pendiente |
-| Informes buscados para recuperación | Pendiente |
-| Informes no recuperados | Pendiente |
-| Informes evaluados a texto completo | Pendiente |
-| Informes excluidos, por razón | Pendiente |
-| Estudios incluidos en la revisión | Pendiente |
-| Informes correspondientes a estudios incluidos | Pendiente |
+| Registros identificados en OpenAlex y Crossref | 100 |
+| Duplicados eliminados | 3 |
+| Registros cribados por título | 97 |
+| Registros excluidos mediante regla reproducible | 49 |
+| Informes buscados para recuperación | 48 |
+| Informes no recuperados en acceso abierto | 10 |
+| Informes evaluados | 38 |
+| Informes excluidos por elegibilidad/calidad | 15 |
+| Estudios incluidos en la revisión rápida | 23 |
 
 ## 5. Síntesis exploratoria de literatura semilla
 

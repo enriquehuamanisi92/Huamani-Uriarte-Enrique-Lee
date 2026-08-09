@@ -1,7 +1,8 @@
 database,search_date,exact_query,filters,records_exported,export_file,status
-Scopus,,,,,,pending
-Web of Science,,,,,,pending
-IEEE Xplore,,,,,,pending
-ACM Digital Library,,,,,,pending
-SciELO,,,,,,pending
-Google Scholar,,,,,,pending_supplementary
+OpenAlex,2026-08-09,"spatiotemporal crime prediction machine learning urban","2008-01-01 to 2026-08-09; first 50 ranked results",50,search_results_2026-08-09.csv,completed
+Crossref,2026-08-09,"spatiotemporal crime prediction machine learning urban","journal-article; 2008-01-01 to 2026-08-09; first 50 ranked results",50,search_results_2026-08-09.csv,completed
+Scopus,,,,,,pending_institutional_access
+Web of Science,,,,,,pending_institutional_access
+IEEE Xplore,,,,,,pending_institutional_access
+ACM Digital Library,,,,,,pending_institutional_access
+SciELO,,,,,,pending_database_search
